@@ -30,11 +30,11 @@ const App: React.FC = () => {
     initApp()
     console.log("data", data)
   }, [])
-
-  const keepScore = (continent: string) => {
-    const total: number = correctGuesses[continent] + incorrectGuesses[continent]
+  
+  const keepScore = (continent: keyof Guesses): string  => {
+    const total = correctGuesses[continent] + incorrectGuesses[continent]
     const score = (correctGuesses[continent]/total * 100).toFixed() + '%'
-    console.log('score', score)
+    return score
   }
 
   return (
