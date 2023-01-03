@@ -1,6 +1,7 @@
 import '../App/App.css'
 import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
+import { Route, Routes } from 'react-router-dom'
 
 interface countryData {
   data: string[]
@@ -35,13 +36,23 @@ const App: React.FC = () => {
 
   const keepScore = (continent: string) => {
     const total = correctGuesses[continent] + incorrectGuesses[continent]
-    const score = (correctGuesses[continent]/total * 100).toFixed() + '%'
+    const score = (correctGuesses[continent] / total * 100).toFixed() + '%'
     console.log('score', score)
   }
 
   return (
     <main className="app-container">
       <h1>Trivia Game</h1>
+      <Routes>
+        <Route
+          exact path="/"
+          element={<h2>Start view</h2>}
+        />
+        <Route
+          exact path="/play"
+          element={<h2>Play view</h2>}
+        />
+      </Routes>
     </main>
   )
 }
