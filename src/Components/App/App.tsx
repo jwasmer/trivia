@@ -2,7 +2,7 @@ import '../App/App.css'
 import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 
-type data = {
+interface countryData {
   data: string[]
 }
 
@@ -15,7 +15,7 @@ interface Guesses {
 }
 
 const App: React.FC = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState<countryData>()
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 8, Oceania: 0, Europe: 0, Africa: 0 })
   const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 4, Oceania: 0, Europe: 0, Africa: 0 })
   const initApp = async () => {
