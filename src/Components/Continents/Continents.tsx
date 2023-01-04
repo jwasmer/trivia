@@ -6,9 +6,13 @@ type CountriesProps = {
 }
 
 const Continents: React.FC <CountriesProps> = (countries) => {
-  return(
-    <h2>Hello World</h2>
-  )
+  console.log('countries', countries.countries)
+  const continents = countries.countries.map(item => {
+    return item.name
+  })
+  return <div>
+    {continents}
+  </div>
 }
 
 export default Continents
