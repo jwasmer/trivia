@@ -30,13 +30,11 @@ const App: React.FC = () => {
   useEffect(() => {
     initApp()
     console.log("data", data)
-    keepScore('Asia')
   }, [])
 
   const keepScore = (continent: keyof Guesses): string  => {
     const total = correctGuesses[continent] + incorrectGuesses[continent]
     const score = (correctGuesses[continent]/total * 100).toFixed() + '%'
-    console.log('TYPEOF', typeof score)
     return score
   }
 
@@ -45,11 +43,11 @@ const App: React.FC = () => {
       <h1>Trivia Game</h1>
       <Routes>
         <Route
-          exact path="/"
+          path="/"
           element={<h2>Start view</h2>}
         />
         <Route
-          exact path="/play"
+          path="/play"
           element={<h2>Play view</h2>}
         />
       </Routes>
@@ -58,3 +56,4 @@ const App: React.FC = () => {
 }
 
 export default App
+
