@@ -48,7 +48,7 @@ const App: React.FC = () => {
         <Route
           path="/"
           element={<div className="homepage-content">
-            <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-img"/>
+            <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-gif"/>
             <div className="home-buttons">
             <NavLink to='/play' className='select-link'>
               <button className="select-game" data-cy="select-game-btn">Select Game</button>
