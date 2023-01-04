@@ -1,6 +1,6 @@
 import '../App/App.css'
 import React, { useState, useEffect } from 'react'
-import getData from "../../apicalls"
+import getData  from "../../apicalls"
 import { Route, Routes } from 'react-router-dom'
 
 interface Guesses {
@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const initApp = async () => {
     try {
       const response = await getData()
+      console.log('DATA', data)
       setData(response.data.continents)
     }
     catch (error) {
@@ -29,11 +30,13 @@ const App: React.FC = () => {
   useEffect(() => {
     initApp()
     console.log("data", data)
+    keepScore('Asia')
   }, [])
-  
+
   const keepScore = (continent: keyof Guesses): string  => {
     const total = correctGuesses[continent] + incorrectGuesses[continent]
     const score = (correctGuesses[continent]/total * 100).toFixed() + '%'
+    console.log('TYPEOF', typeof score)
     return score
   }
 

@@ -1,4 +1,4 @@
-const getData = () => {
+const getData = (): Promise<any> => {
   return fetch('https://countries.trevorblades.com/', {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
