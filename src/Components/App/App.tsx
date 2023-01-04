@@ -1,7 +1,8 @@
-import '../App/App.css'
+import './App.css'
+// import logo from './logo.svg';
 import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, NavLink } from 'react-router-dom'
 
 interface countryData {
   data: string[]
@@ -42,11 +43,23 @@ const App: React.FC = () => {
 
   return (
     <main className="app-container">
-      <h1>Trivia Game</h1>
+       <NavLink to='/' className='home-link'>
+        <h1 className="title">Trivia Game</h1>
+       </NavLink>
       <Routes>
         <Route
           exact path="/"
-          element={<h2>Start view</h2>}
+          element={<div className="homepage-content">
+            <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" />
+            <div className="home-buttons">
+            <NavLink to='/play' className='select-link'>
+              <button className="select-game">Select Game</button>
+            </NavLink>
+            <NavLink to='/scoreboard' className='scoreboard-link'>
+              <button className="view-scoreboard">View Scoreboard</button>
+            </NavLink>
+            </div>
+          </div>}
         />
         <Route
           exact path="/play"
