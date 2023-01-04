@@ -2,6 +2,7 @@ import './App.css'
 import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
+import Continents from '../Continents/Continents'
 
 
 interface Guesses {
@@ -61,7 +62,8 @@ const App: React.FC = () => {
           />
           <Route
           path="/play"
-          element={<h2>Play view</h2>}
+          // element={<h2>Play view</h2>}
+          element={<Continents />}
         />
       </Routes>
     </main>
