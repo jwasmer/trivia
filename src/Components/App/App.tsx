@@ -63,7 +63,7 @@ const App: React.FC = () => {
           <Route
           path="/play"
           element={<Continents countries={data}/>}
-        />
+        /> 
       </Routes>
     </main>
   )

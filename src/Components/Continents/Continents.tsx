@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ButtonHTMLAttributes } from 'react'
 import { CountriesData } from '../../countries.model'
+import { NavLink, useParams } from 'react-router-dom'
 
 type CountriesProps = {
   countries: CountriesData[]
 }
 
 const Continents: React.FC <CountriesProps> = (countries) => {
-  const continentsButtons = countries.countries.map(item => {
-    return(<button>{item.name}</button>)
+  const [selectedCountry, setSelectedCountry] = useState({})
+  const continentsButtons: JSX.Element[] = countries.countries.map(item => {
+    return(
+      <NavLink to={`/play/${item.code}`}>
+        <button onClick={() => assignData(item)} key={item.code}>{item.name}</button>
+      </NavLink>
+    )
   })
-  return (<div>
-    {continentsButtons}
-  </div>)
+  const assignData = (item: {}) => {
+    setSelectedCountry(item)
+  }
+
+  return (
+    <div className='continent-buttons'>
+        {continentsButtons}
+    </div>
+  )
 }
 
 export default Continents
