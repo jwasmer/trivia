@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 function Continents() {
   return(
-    <h2>Hello world</h2>
+    <h2>Hello World</h2>
   )
 }
 

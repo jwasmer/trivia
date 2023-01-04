@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
-
-
+import { CountriesData } from '../../countries.model'
 interface Guesses {
   Americas: number,
   Asia: number,
@@ -14,7 +13,7 @@ interface Guesses {
 }
 
 const App: React.FC = () => {
-  const [data, setData] = useState<string[]>([])
+  const [data, setData] = useState<CountriesData[]>([])
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 8, Oceania: 0, Europe: 0, Africa: 0 })
   const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 4, Oceania: 0, Europe: 0, Africa: 0 })
   
@@ -35,6 +34,7 @@ const App: React.FC = () => {
   }, [])
 
   const keepScore = (continent: keyof Guesses): string  => {
+    console.log('DATA', data)
     const total = correctGuesses[continent] + incorrectGuesses[continent]
     const score = (correctGuesses[continent]/total * 100).toFixed() + '%'
     return score
@@ -62,7 +62,6 @@ const App: React.FC = () => {
           />
           <Route
           path="/play"
-          // element={<h2>Play view</h2>}
           element={<Continents />}
         />
       </Routes>
