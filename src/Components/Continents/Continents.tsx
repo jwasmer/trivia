@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ButtonHTMLAttributes } from 'react'
 import { CountriesData } from '../../countries.model'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 type CountriesProps = {
   countries: CountriesData[]
