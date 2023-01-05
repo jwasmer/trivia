@@ -4,31 +4,35 @@ import { CountriesData } from '../../countries.model'
 import Categories from "../Categories/Categories.tsx"
 
 type CountriesProps = {
-  countries: CountriesData[]
+  continents: CountriesData[]
 }
 
-const Continents: React.FC<CountriesProps> = (countries) => {
-  const [selectedContinent, setSelectedContinent] = useState({})
-  const continentsButtons: JSX.Element[] = countries.countries.map(item => {
+const Continents: React.FC<CountriesProps> = (props) => {
+  const [selectedContinent, setSelectedContinent] = useState<CountriesProps | {}>({ countries: [] })
+  const [selectedCategory, setSelectedCategory] = useState<String>('')
+  const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
-      <NavLink to={`/play/${item.code}`}>
-        <button onClick={() => selectedContinentButtons(item)} key={item.code}>{item.name}</button>
-      </NavLink>
+      <button onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
     )
   })
-  const selectedContinentButtons = (item) =>
-  console.log("ITEM", item)
-    Object.keys(item).map((key) => {
-      return (
-        <button>{key}</button>
-      )
-    })
-
+  const assignData = (continent: object) => {
+    setSelectedContinent(continent)
+    props.setSelectedContinentApp(continent)
+  }
+  const assignCategory = (event: string) => {
+    setSelectedCategory(event.target.name)
+    props.setSelectedContinentApp(event.target.name)
+  }
   return (
     <div className='continent-buttons'>
-      {continentsButtons}
-      {selectedContinentButtons}
-      {/* {selectedContinent && <Categories selectedCountry={selectedContinent} />} */}
+      {!selectedContinent.countries.length && <div>{continentsButtons}</div>}
+      {selectedContinent.countries.length > 0 && selectedCategory === '' ?
+        <div>
+          <button key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
+          <button key="capitols" name="capitols" onClick={(event) => assignCategory(event)}>Capitols</button>
+          <button key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
+        </div>
+        : null}
     </div>
   )
 }

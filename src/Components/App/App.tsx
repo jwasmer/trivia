@@ -4,6 +4,7 @@ import getData from "../../apicalls.tsx"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents.tsx'
 import { CountriesData } from '../../countries.model'
+
 interface Guesses {
   Americas: number,
   Asia: number,
@@ -13,7 +14,12 @@ interface Guesses {
 }
 
 const App: React.FC = () => {
+
   const [data, setData] = useState<CountriesData[]>([])
+  const [selectedContinent, setSelectedContinentApp] = useState({ countries: [] })
+  // console.log("APP SELECTED CONTINENT", selectedContinent)
+  const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
+  // console.log("APP SELECTED CATEGORY", selectedCategory)
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
   const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
 
@@ -60,7 +66,7 @@ const App: React.FC = () => {
         />
         {data.length && <Route
           path="/play"
-          element={<Continents countries={data} />}
+          element={<Continents continents={data} setSelectedContinentApp={setSelectedContinentApp} setSelectedCategoryApp={setSelectedCategoryApp} />}
         />}
       </Routes>
     </main>
