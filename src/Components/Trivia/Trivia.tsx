@@ -44,24 +44,39 @@ const Trivia: React.FC <CountriesProps> = (countries) => {
     emoji: '🇪🇬',
   }
  ]
- function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
+
+const shuffle = (array: any) => {
+  var length = array.length, current, remaining;
+
+  while (length) {
+
+    remaining = Math.floor(Math.random() * length--);
+
+    current = array[length];
+    array[length] = array[remaining];
+    array[remaining] = current;
   }
-const randomNum = getRandomInt(tempArray.length)
+
+  return array;
+}
+
+const randomizedArray = shuffle(tempArray)
+
  const currentQuestion = (
     <div className="card">
       <h2 className="which-question">Which country uses this flag?</h2>
-      <h1 className="emoji">{tempArray[randomNum].emoji}</h1>  
+      <h1 className="emoji">{randomizedArray[0].emoji}</h1>  
     </div>
  )
- const currentChoices = (
-  <div>
-    <button className="mc-button" id="mc-a">Tunisia!</button>
-    <button className="mc-button" id="mc-b">Algeria!</button>
-    <button className="mc-button" id="mc-c">Libya!</button>
-    <button className="mc-button" id="mc-d">Morocco!</button>
-  </div>
- )
+
+const currentChoices = [
+  <button className="mc-button" id="mc-a">{randomizedArray[0].country}</button>,
+  <button className="mc-button" id="mc-b">{randomizedArray[1].country}</button>,
+  <button className="mc-button" id="mc-c">{randomizedArray[2].country}</button>,
+  <button className="mc-button" id="mc-d">{randomizedArray[3].country}</button>
+]
+
+const randomOrder = shuffle([0, 1, 2, 3])
 
  //makebuttonappear()
  //clickbutton(), which fires reset() and newquestion()
@@ -69,7 +84,12 @@ const randomNum = getRandomInt(tempArray.length)
  return (
    <div className="continent-selection-content">
      <div className="question">{currentQuestion}</div>
-     <div className='mc-buttons'>{currentChoices}</div>
+     <div className='mc-buttons'>
+      {currentChoices[randomOrder[0]]}
+      {currentChoices[randomOrder[1]]}
+      {currentChoices[randomOrder[2]]}
+      {currentChoices[randomOrder[3]]}
+      </div>
    </div>
  )
 }
