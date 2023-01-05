@@ -13,10 +13,11 @@ interface Guesses {
   Africa: number
 }
 
+
 const App: React.FC = () => {
 
   const [data, setData] = useState<CountriesData[]>([])
-  const [selectedContinent, setSelectedContinentApp] = useState({ countries: [] })
+  const [selectedContinent, setSelectedContinentApp] = useState({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
   const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
@@ -41,7 +42,15 @@ const App: React.FC = () => {
     const score = (correctGuesses[continent] / total * 100).toFixed() + '%'
     return score
   }
-
+  const assignSelections = (newSelection: object | string)  => {
+    if (newSelection === 'emoji' || newSelection === 'capitols' || newSelection === 'languages') {
+      setSelectedCategoryApp(newSelection)
+      console.log("CATEGORY", newSelection)
+    } else {
+      setSelectedContinentApp(newSelection)
+      console.log("CONTINENT TYPE", newSelection)
+    }
+  }
   return (
     <main className="app-container">
       <NavLink to='/' className='home-link'>
@@ -64,7 +73,7 @@ const App: React.FC = () => {
         />
         {data.length && <Route
           path="/play"
-          element={<Continents continents={data} setSelectedContinentApp={setSelectedContinentApp} setSelectedCategoryApp={setSelectedCategoryApp} />}
+          element={<Continents continents={data} assignSelections={assignSelections} />}
         />}
       </Routes>
     </main>

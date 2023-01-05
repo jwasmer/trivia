@@ -5,8 +5,8 @@ import { CountriesData } from '../../countries.model'
 interface CountriesProps {
   continents: CountriesData[]
   continent?: CountriesData[]
-  setSelectedContinentApp: ({}) => {} 
-  setSelectedCategoryApp: ({}) => {} 
+  // setSelectedContinentApp: ({ }) => {}
+  // setSelectedCategoryApp: ({ }) => {}
 }
 
 type CategoryButton = {
@@ -28,14 +28,16 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
     )
   })
   const assignData = (continent: object) => {
+    props.assignSelections(continent)
     setSelectedContinent(continent)
-    props.setSelectedContinentApp(continent)
   }
-  const assignCategory = (event: React.MouseEvent<HTMLButtonElement> ) => {
+  const assignCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    const category = buttonRef.current!.name
-    setSelectedCategory(category)
-    props.setSelectedCategoryApp(category)
+    // const category = buttonRef.current!.name
+    // props.assignSelections(category)
+    // setSelectedCategory(category)
+    props.assignSelections(event.target.name)
+    setSelectedCategory(event.target.name)
   }
   return (
     <div className='continent-buttons'>
