@@ -65,6 +65,10 @@ const App: React.FC = () => {
           path="/play"
           element={<Continents countries={data}/>}
         /> 
+        <Route
+          path="/h"
+          element={<Trivia countries={data}/>}
+        />
       </Routes>
     </main>
   )
