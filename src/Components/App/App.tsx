@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
+import Trivia from '../Trivia/Trivia'
 import { CountriesData } from '../../countries.model'
 interface Guesses {
   Americas: number,
