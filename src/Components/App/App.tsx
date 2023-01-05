@@ -1,8 +1,8 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
-import getData from "../../apicalls.tsx"
+import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
-import Continents from '../Continents/Continents.tsx'
+import Continents from '../Continents/Continents'
 import { CountriesData } from '../../countries.model'
 
 interface Guesses {
@@ -17,9 +17,7 @@ const App: React.FC = () => {
 
   const [data, setData] = useState<CountriesData[]>([])
   const [selectedContinent, setSelectedContinentApp] = useState({ countries: [] })
-  // console.log("APP SELECTED CONTINENT", selectedContinent)
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
-  // console.log("APP SELECTED CATEGORY", selectedCategory)
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
   const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
 

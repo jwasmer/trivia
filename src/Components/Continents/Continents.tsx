@@ -1,34 +1,49 @@
 import React, { useState, useEffect, ButtonHTMLAttributes } from 'react'
+import { SyntheticEvent } from 'react'
 import { CountriesData } from '../../countries.model'
 
-type CountriesProps = {
+interface CountriesProps {
   continents: CountriesData[]
+  continent?: CountriesData[]
   setSelectedContinentApp: ({}) => {} 
   setSelectedCategoryApp: ({}) => {} 
 }
-const target = event.target as HTMLInputElement
 
-const Continents: React.FC<CountriesProps> = (props) => {
-  const [selectedContinent, setSelectedContinent] = useState<CountriesProps | {}>({ countries: [] })
-  const [selectedCategory, setSelectedCategory] = useState<String >('')
+type CategoryButton = {
+  assignCategory: (event: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+type EventTarget = {
+  name: string | null
+}
+
+const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
+  console.log('PROPS', props)
+  const [selectedContinent, setSelectedContinent] = useState({})
+  const contienentKeys = Object.keys(selectedContinent)
+  const [selectedCategory, setSelectedCategory] = useState('')
   const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
       <button onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
     )
   })
   const assignData = (continent: object) => {
+    console.log('CONTIENT', continent)
     setSelectedContinent(continent)
     props.setSelectedContinentApp(continent)
   }
-  const assignCategory = (event: HTMLInputElement) => {
-  
-    setSelectedCategory(event.target.name)
-    props.setSelectedCategoryApp(event.target.name)
+  const assignCategory = (event: React.MouseEvent<HTMLButtonElement> ) => {
+    //check that id exists 
+    console.log('EVENT.TARGET', event.target)
+    if(event.target) {
+      setSelectedCategory(event.target.name)
+      props.setSelectedCategoryApp(event.target.name)
+    }
   }
   return (
     <div className='continent-buttons'>
-      {!selectedContinent.countries.length && <div>{continentsButtons}</div>}
-      {selectedContinent.countries.length > 0 && selectedCategory === '' ?
+      {!contienentKeys.length && <div>{continentsButtons}</div>}
+      {contienentKeys.length > 0 && selectedCategory === '' ?
         <div>
           <button key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
           <button key="capitols" name="capitols" onClick={(event) => assignCategory(event)}>Capitols</button>
