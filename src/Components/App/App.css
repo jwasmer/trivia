@@ -25,7 +25,7 @@ html {
 }
 
 .title:hover {
-  transform: scale(1.02);
+  transform: scale(1.019);
   transition: all ease-in-out .3s;
 }
 
