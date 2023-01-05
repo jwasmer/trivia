@@ -1,7 +1,5 @@
 import React, { useState, useEffect, ButtonHTMLAttributes } from 'react'
-import { Route, Routes, NavLink } from 'react-router-dom'
 import { CountriesData } from '../../countries.model'
-import Categories from "../Categories/Categories.tsx"
 
 type CountriesProps = {
   continents: CountriesData[]
