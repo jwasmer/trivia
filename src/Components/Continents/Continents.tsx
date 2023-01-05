@@ -3,11 +3,14 @@ import { CountriesData } from '../../countries.model'
 
 type CountriesProps = {
   continents: CountriesData[]
+  setSelectedContinentApp: ({}) => {} 
+  setSelectedCategoryApp: ({}) => {} 
 }
+const target = event.target as HTMLInputElement
 
 const Continents: React.FC<CountriesProps> = (props) => {
   const [selectedContinent, setSelectedContinent] = useState<CountriesProps | {}>({ countries: [] })
-  const [selectedCategory, setSelectedCategory] = useState<String>('')
+  const [selectedCategory, setSelectedCategory] = useState<String >('')
   const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
       <button onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
@@ -17,9 +20,10 @@ const Continents: React.FC<CountriesProps> = (props) => {
     setSelectedContinent(continent)
     props.setSelectedContinentApp(continent)
   }
-  const assignCategory = (event: string) => {
+  const assignCategory = (event: HTMLInputElement) => {
+  
     setSelectedCategory(event.target.name)
-    props.setSelectedContinentApp(event.target.name)
+    props.setSelectedCategoryApp(event.target.name)
   }
   return (
     <div className='continent-buttons'>
