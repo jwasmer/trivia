@@ -1,3 +1,32 @@
+.questions-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26.5vw;
+    width: 40vw;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: #00a3b3;
+}
+
+.which-question {
+    font-size: 2.5vw;
+    margin-top: 5vw;
+    margin-bottom: 2vw;
+}
+
+.emoji {
+    margin-top: 0vw;
+    margin-bottom: 0vw;
+    font-size: 10vw;
+}
+
 .mc-buttons {
     margin-left: 25vw;
     margin-right: 25vw;
