@@ -1,0 +1,25 @@
+.mc-buttons {
+    margin-left: 25vw;
+    margin-right: 25vw;
+}
+
+.mc-button {
+    height: 4vw;
+    width: 17vw;
+    font-family: 'Coiny';
+    font-size: 1.5vw;
+    color: #FFFFFF;
+    margin-left: 1.1vw;
+    margin-right: 1.1vw;
+    margin-top: 2vw;
+    background-color: #00a3b3;
+    border: none;
+    border-radius: 1vw;
+}
+
+.mc-button:hover {
+    cursor: pointer;
+    background-color: #006871;
+    transform: scale(1.2);
+    transition: all ease-in-out .3s;
+}
