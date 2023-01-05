@@ -22,11 +22,45 @@ type CountriesProps = {
  
 const Trivia: React.FC <CountriesProps> = (countries) => {
  const [selectedCountry, setSelectedCountry] = useState({})
+ const tempArray = [
+  {
+    country: 'Algeria',
+    emoji: '🇩🇿',
+  },
+  {
+    country: 'Tunisia',
+    emoji: '🇹🇳',
+  },
+  {
+    country: 'Libya',
+    emoji: '🇱🇾',
+  },
+  {
+    country: 'Morocco',
+    emoji: '🇲🇦',
+  },
+  {
+    country: 'Egypt',
+    emoji: '🇪🇬',
+  }
+ ]
+ function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max);
+  }
+const randomNum = getRandomInt(tempArray.length)
  const currentQuestion = (
-    <div className='card'>
-      <h2>Which country uses this flag?</h2>
-      <h1>Emoji</h1>  
+    <div className="card">
+      <h2 className="which-question">Which country uses this flag?</h2>
+      <h1 className="emoji">{tempArray[randomNum].emoji}</h1>  
     </div>
+ )
+ const currentChoices = (
+  <div>
+    <button className="mc-button" id="mc-a">Tunisia!</button>
+    <button className="mc-button" id="mc-b">Algeria!</button>
+    <button className="mc-button" id="mc-c">Libya!</button>
+    <button className="mc-button" id="mc-d">Morocco!</button>
+  </div>
  )
 
  //makebuttonappear()
@@ -35,12 +69,7 @@ const Trivia: React.FC <CountriesProps> = (countries) => {
  return (
    <div className="continent-selection-content">
      <div className="question">{currentQuestion}</div>
-     <div className='mc-buttons'>
-       <button className="mc-button" id="mc-a">Tunisia!</button>
-       <button className="mc-button" id="mc-b">Algeria!</button>
-       <button className="mc-button" id="mc-c">Libya!</button>
-       <button className="mc-button" id="mc-d">Morocco!</button>
-     </div>
+     <div className='mc-buttons'>{currentChoices}</div>
    </div>
  )
 }
