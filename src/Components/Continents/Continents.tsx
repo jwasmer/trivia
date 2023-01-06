@@ -42,7 +42,7 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
     <div className='continent-buttons'>
       {!contienentKeys.length && <div>{continentsButtons}</div>}
       {contienentKeys.length > 0 && selectedCategory === '' ?
-        <div>
+        <div className='category-buttons'>
           <button key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
           <button key="capitols" name="capitols" onClick={(event) => assignCategory(event)}>Capitols</button>
           <button key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
