@@ -1,0 +1,41 @@
+{ 
+"data": {
+  "continents": [
+    {
+      "Africa": {
+      "code": "AF",
+      "name": "Africa",
+        "countries": [
+          {
+          "code": "AO",
+          "name": "Angola",
+          "emoji": "🇦🇴",
+          "capital": "Luanda",
+          "currency": "AOA",
+          "states": [],
+          "languages": [
+          {
+            "name": "Portuguese",
+            "native": "Português"
+          }]
+        }, 
+        {
+        "code": "BF",
+        "name": "Burkina Faso",
+        "emoji": "🇧🇫",
+        "capital": "Ouagadougou",
+        "currency": "XOF",
+        "states": [],
+        "languages": [
+          {
+            "name": "French",
+            "native": "Français"
+          },
+          {
+            "name": "Peul",
+            "native": "Fulfulde"
+          }]
+      }]}
+}]
+}
+}

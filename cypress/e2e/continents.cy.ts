@@ -1,34 +1,41 @@
 describe('continents spec', () => {
   beforeEach(() => {
-    cy.request({
-      method: 'POST',
-      url: 'https://countries.trevorblades.com/',
+    cy.intercept('https://countries.trevorblades.com/').as('continents')
+    cy.visit('http://localhost:3000/play')
+    cy.wait('@continents').then((interception) => {
       body: {
-        query: `
-      query {
-          continents {
-              code 
-            	name
-            countries { 
-              code
-              name
-              emoji
-              capital
-              currency
-              states {
-                name
-              }
-              languages {
-                name
-                native
-              }
-            } 
-          }
-        }
-      `
-      }
+      fixture: 'continents.json'
+     }
     })
-    cy.visit("http://localhost:3000/play")
+    // cy.request({
+    //   method: 'POST',
+    //   url: 'https://countries.trevorblades.com/',
+    //   body: {
+    //     query: `
+    //   query {
+    //       continents {
+    //           code 
+    //         	name
+    //         countries { 
+    //           code
+    //           name
+    //           emoji
+    //           capital
+    //           currency
+    //           states {
+    //             name
+    //           }
+    //           languages {
+    //             name
+    //             native
+    //           }
+    //         } 
+    //       }
+    //     }
+    //   `
+    //   }
+    // })
+    // cy.visit("http://localhost:3000/play")
   })
   it('Should have a game title', () => {
     cy.get('[data-cy="title"]').contains('Trivia Game')
@@ -54,12 +61,3 @@ describe('continents spec', () => {
   })
 })
 
-
-//it('Should be able to fetch data, () => {
-//   cy.intercept('POST', 'https://countries.trevorblades.com/', (req) => {
-  //req.reply({
-// statusCode: 200,
-// fixture: 'continents.json'
-  // })
-// } )
-// })
