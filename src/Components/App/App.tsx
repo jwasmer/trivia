@@ -89,8 +89,13 @@ const App: React.FC = () => {
     const continents: string[] = Object.keys(guesses)
 
     const score: Score = continents.reduce((acc: Score, val: string | keyof Score) => {
-      acc[val] = guesses[val].correct / (guesses[val].correct + guesses[val].incorrect)
-      
+      if (guesses[val].correct + guesses[val].incorrect === 0) {
+        acc[val] = -1
+      }
+      else {
+        acc[val] = guesses[val].correct / (guesses[val].correct + guesses[val].incorrect)
+      }
+
       return acc
     }, {})
 
