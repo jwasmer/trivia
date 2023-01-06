@@ -54,7 +54,7 @@ const App: React.FC = () => {
   return (
     <main className="app-container">
        <NavLink to='/' className='home-link'>
-        <h1 className="title">Trivia Game</h1>
+        <h1 className="title" data-cy="title">Trivia Game</h1>
       </NavLink>
       <Routes>
         <Route
