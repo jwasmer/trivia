@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
+import Trivia from '../Trivia/Trivia'
 import { CountriesData } from '../../countries.model'
 
 interface Guesses {
@@ -73,8 +74,12 @@ const App: React.FC = () => {
         />
         {data.length && <Route
           path="/play"
-          element={<Continents continents={data} assignSelections={assignSelections} />}
+           element={<Continents continents={data} assignSelections={assignSelections} />}
         />}
+        <Route
+          path="/h"
+          element={<Trivia countries={data}/>}
+        />
       </Routes>
     </main>
   )
