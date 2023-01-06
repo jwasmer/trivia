@@ -34,16 +34,18 @@ describe('continents spec', () => {
     cy.get('[data-cy="title"]').contains('Trivia Game')
   });
   it('Should display buttons for each of the continents', () => {
-    cy.get('[href="/play/AF"] > button').contains('Africa')
-    cy.get('[href="/play/AN"] > button').contains('Antarctica')
-    cy.get('[href="/play/AS"] > button').contains('Asia')
-    cy.get('[href="/play/EU"] > button').contains('Europe')
-    cy.get('[href="/play/NA"] > button').contains('North America')
-    cy.get('[href="/play/OC"] > button').contains('Oceania')
-    cy.get('[href="/play/SA"] > button').contains('South America')
+    cy.get('div > :nth-child(1)').contains('Africa')
+    cy.get('div > :nth-child(2)').contains('Antarctica')
+    cy.get('div > :nth-child(3)').contains('Asia')
+    cy.get('div > :nth-child(4)').contains('Europe')
+    cy.get('div > :nth-child(5)').contains('North America')
+    cy.get('div > :nth-child(6)').contains('Oceania')
+    cy.get('div > :nth-child(7)').contains('South America')
   })
-  it('Should route user to the categories page of specific continent', () => {
-    cy.get('[href="/play/AF"] > button').click()
-    cy.visit("http://localhost:3000/play/AF")
+  it('Should display buttons for category options', () => {
+    cy.get('.continent-buttons > div').click({ multiple: true})
+    cy.get('[name="emoji"]').contains('Flags')
+    cy.get('[name="languages"]').contains('Languages')
+    cy.get('[name="capitols"]').contains('Capitols')
   })
 })
