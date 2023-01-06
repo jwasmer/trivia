@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const [data, setData] = useState<CountriesData[]>([])
   const [selectedContinent, setSelectedContinentApp] = useState({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
+  const [gameData, setGameData] = useState([])
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
   const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
 
@@ -53,16 +54,22 @@ const App: React.FC = () => {
     }
   }
 
-  const filterSelections = (category: string) => {
-    const selectedGameData = selectedContinent.countries.reduce((acc: [], curr: {}) => {
-      acc.push({ [curr.name]: curr[category] })
-      return acc
-    }, [])
-    console.log("selected game data", selectedGameData)
-  }
+  // type Filter = {
+  //   filterSelections: () => void
+  //   selectedGameData: {gameData: Array, continent: string, }
+  // }
+  // type Filter = {
+  //   filterSelections: () => void
+ 
+  // }
 
-  if (selectedCategory && selectedContinent) {
-    filterSelections(selectedCategory)
+  const filterSelections = () => {
+    const selectedGameData = selectedContinent.countries.reduce((acc: [], curr: {}) => {
+      acc.gameData.push({ [curr.name]: curr[selectedCategory] })
+      return acc
+    }, { gameData: [], continent: selectedContinent.name, category: selectedCategory })
+    console.log("selected game data", selectedGameData)
+    setGameData(selectedGameData)
   }
 
   return (
@@ -87,7 +94,7 @@ const App: React.FC = () => {
         />
         {data.length && <Route
           path="/play"
-          element={<Continents continents={data} assignSelections={assignSelections} />}
+          element={<Continents continents={data} assignSelections={assignSelections} filterSelections={filterSelections} />}
         />}
       </Routes>
     </main>

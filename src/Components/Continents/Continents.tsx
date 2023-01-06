@@ -5,6 +5,8 @@ import { CountriesData } from '../../countries.model'
 interface CountriesProps {
   continents: CountriesData[]
   continent?: CountriesData[]
+  assignSelections: React.FC 
+  filterSelections: React.FC
   // setSelectedContinentApp: ({ }) => {}
   // setSelectedCategoryApp: ({ }) => {}
 }
@@ -22,6 +24,7 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const [selectedContinent, setSelectedContinent] = useState({})
   const contienentKeys = Object.keys(selectedContinent)
   const [selectedCategory, setSelectedCategory] = useState('')
+  
   const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
       <button onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
@@ -33,11 +36,9 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   }
   const assignCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    // const category = buttonRef.current!.name
-    // props.assignSelections(category)
-    // setSelectedCategory(category)
     props.assignSelections(event.target.name)
     setSelectedCategory(event.target.name)
+    props.filterSelections()
   }
   return (
     <div className='continent-buttons'>
