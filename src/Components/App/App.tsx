@@ -76,7 +76,6 @@ const App: React.FC = () => {
           path="/play"
            element={<Continents continents={data} assignSelections={assignSelections} />}
         />}
-        /> 
         <Route
           path="/h"
           element={<Trivia countries={data}/>}
