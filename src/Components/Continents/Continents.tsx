@@ -52,5 +52,5 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
     </div>
   )
 }
-
+ 
 export default Continents

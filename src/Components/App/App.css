@@ -24,6 +24,11 @@ html {
   margin-bottom: .2vw;
 }
 
+.title:hover {
+  transform: scale(1.019);
+  transition: all ease-in-out .3s;
+}
+
 .earth-gif {
   height: 26.5vw;
   width: 40vw;
@@ -49,7 +54,8 @@ html {
 .select-game:hover, .view-scoreboard:hover {
   cursor: pointer;
   background-color: #006871;
-  font-size: 1.6vw;
+  transform: scale(1.2);
+  transition: all ease-in-out .3s;
 }
 
 a:link, a:visited, a:hover, a:active {
