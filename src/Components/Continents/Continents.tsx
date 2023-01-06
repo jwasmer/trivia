@@ -6,7 +6,7 @@ interface CountriesProps {
   continents: CountriesData[]
   continent?: CountriesData[]
   assignSelections: React.FC 
-  filterSelections: React.FC
+  // filterSelections: React.FC
   // setSelectedContinentApp: ({ }) => {}
   // setSelectedCategoryApp: ({ }) => {}
 }
@@ -36,17 +36,18 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   }
   const assignCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    console.log("assign category name",event.target.name)
     props.assignSelections(event.target.name)
     setSelectedCategory(event.target.name)
-    props.filterSelections()
+    props.filterSelections(event.target.name)
   }
   return (
     <div className='continent-buttons'>
       {!contienentKeys.length && <div>{continentsButtons}</div>}
       {contienentKeys.length > 0 && selectedCategory === '' ?
         <div>
-          <button ref={buttonRef} key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
-          <button ref={buttonRef} key="capitols" name="capitols" onClick={(event) => assignCategory(event)}>Capitols</button>
+          <button ref={buttonRef} key="emojis" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
+          <button ref={buttonRef} key="capitals" name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
           <button ref={buttonRef} key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
         </div>
         : null}

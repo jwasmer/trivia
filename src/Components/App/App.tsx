@@ -13,11 +13,25 @@ interface Guesses {
   Africa: number
 }
 
+type ContinentsData = {
+countries: {
+      capital: string,
+      code: string,
+      currency: string,
+      emoji: string,
+      languages: {
+        name: string,
+        native: string
+      }[],
+      name: string,
+      states: {name: string}[],
+    }[]
+}
 
 const App: React.FC = () => {
 
   const [data, setData] = useState<CountriesData[]>([])
-  const [selectedContinent, setSelectedContinentApp] = useState({})
+  const [selectedContinent, setSelectedContinentApp] = useState<ContinentsData | {}>({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
   const [gameData, setGameData] = useState([])
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
@@ -45,7 +59,7 @@ const App: React.FC = () => {
   }
 
   const assignSelections = (newSelection: object | string) => {
-    if (newSelection === 'emoji' || newSelection === 'capitols' || newSelection === 'languages') {
+    if (newSelection === 'emoji' || newSelection === 'capital' || newSelection === 'languages') {
       setSelectedCategoryApp(newSelection)
       console.log("CATEGORY", newSelection)
     } else {
@@ -60,14 +74,24 @@ const App: React.FC = () => {
   // }
   // type Filter = {
   //   filterSelections: () => void
- 
+
   // }
 
-  const filterSelections = () => {
-    const selectedGameData = selectedContinent.countries.reduce((acc: [], curr: {}) => {
-      acc.gameData.push({ [curr.name]: curr[selectedCategory] })
+  type GameData = {
+    gameData: {}
+    // gamedata: [{"Canada": "Montreal"}]
+    continent: string
+    category: string
+    selectedGameData: () => void
+    name: string
+  }
+
+  const filterSelections = (categoryData: string) => {
+    console.log("selected continent at filter", selectedContinent)
+    const selectedGameData = selectedContinent.countries.reduce<GameData>((acc: GameData, curr: string) => {
+      acc.gameData.push({ [curr.name]: curr[categoryData] })
       return acc
-    }, { gameData: [], continent: selectedContinent.name, category: selectedCategory })
+    }, { gameData: [], continent: selectedContinent.name, category: categoryData })
     console.log("selected game data", selectedGameData)
     setGameData(selectedGameData)
   }
@@ -81,7 +105,10 @@ const App: React.FC = () => {
         <Route
           path="/"
           element={<div className="homepage-content">
-            <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-gif" />
+            <img className="earth-gif"
+              src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'}
+              alt="rotating earth gif"
+              data-cy="earth-gif" />
             <div className="home-buttons">
               <NavLink to='/play' className='select-link'>
                 <button className="select-game" data-cy="select-game-btn">Select Game</button>
@@ -94,7 +121,9 @@ const App: React.FC = () => {
         />
         {data.length && <Route
           path="/play"
-          element={<Continents continents={data} assignSelections={assignSelections} filterSelections={filterSelections} />}
+          element={<Continents continents={data}
+            assignSelections={assignSelections}
+            filterSelections={filterSelections} />}
         />}
       </Routes>
     </main>
