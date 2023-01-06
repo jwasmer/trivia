@@ -3,13 +3,14 @@
 //     Average correct % by continent
 
 import React, { useState } from 'react'
+import { KeepScore, Guesses, Score } from '../App/App'
 
-function Scoreboard({ keepScore, guesses }) {
-  const score: KeepScore = keepScore(guesses)
+export default function Scoreboard({ keepScore, guesses }: {keepScore: KeepScore, guesses: Guesses}) {
+  const score: Score = keepScore(guesses)
   return (
     <>
       <div>
-        <p>{ }</p>
+        <p>Americas</p>, Asia</p>, Oceania</p>, Europe</p>, Africa</p>
       </div>
     </>
   )

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
+import Scoreboard from '../Scoreboard/Scoreboard'
 import { CountriesData } from '../../countries.model'
 
 // ---------- TypeScript Interfaces ----------
@@ -84,13 +85,18 @@ const App: React.FC = () => {
   // -------- Game Logic ----------
 
   const keepScore: KeepScore = (guesses: Guesses): Score => {
+
     const continents: string[] = Object.keys(guesses)
+
     const score: Score = continents.reduce((acc: Score, val: string | keyof Score) => {
       acc[val] = guesses[val].correct / (guesses[val].correct + guesses[val].incorrect)
+      
       return acc
     }, {})
+
     return score
   }
+
   const assignSelections = (newSelection: object | string)  => {
     if (newSelection === 'emoji' || newSelection === 'capitols' || newSelection === 'languages') {
       setSelectedCategoryApp(newSelection)
@@ -129,7 +135,8 @@ const App: React.FC = () => {
         />}
         <Route
           path="/scoreboard"
-          element={<Scoreboard keepScore={keepScore} guesses={guesses}/>}/>
+          element={<Scoreboard keepScore={keepScore} guesses={guesses} />} 
+        />
       </Routes>
     </main>
   )
