@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
+import Trivia from '../Trivia/Trivia'
 import Scoreboard from '../Scoreboard/Scoreboard'
 import { CountriesData } from '../../countries.model'
 
@@ -136,8 +137,12 @@ const App: React.FC = () => {
         />
         {data.length && <Route
           path="/play"
-          element={<Continents continents={data} assignSelections={assignSelections} />}
+           element={<Continents continents={data} assignSelections={assignSelections} />}
         />}
+        <Route
+          path="/h"
+          element={<Trivia countries={data}/>}
+        />
         <Route
           path="/scoreboard"
           element={<Scoreboard keepScore={keepScore} guesses={guesses} />} 
