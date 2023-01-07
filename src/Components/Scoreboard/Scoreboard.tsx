@@ -1,3 +1,4 @@
+import React from 'react'
 import { KeepScore, Guesses, Score } from '../App/App'
 
 export default function Scoreboard({ keepScore, guesses }: {keepScore: KeepScore, guesses: Guesses}) {
