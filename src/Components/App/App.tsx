@@ -69,21 +69,32 @@ const App: React.FC = () => {
   }
 
   type GameData = {
-    gameData: {}
+    gameData: {}[]
     continent: string
     category: string
     selectedGameData: () => void
     name: string
   }
 
+  type Current = {
+    code: string
+    name: string
+    capital: string | null
+    emoji: string | null
+    languages: {name: string, native: string}[] | null
+    states: []
+  }
+
   const filterSelections = (categoryData: string) => {
-    console.log("selected continent at filter", selectedContinent)
-    const selectedGameData = selectedContinent.countries.reduce<GameData>((acc: GameData, curr: string) => {
-      acc.gameData.push({ [curr.name]: curr[categoryData] })
-      return acc
-    }, { gameData: [], continent: selectedContinent.name, category: categoryData })
-    console.log("selected game data", selectedGameData)
-    setGameData(selectedGameData)
+    // console.log("selected continent at filter", selectedContinent)
+      const selectedGameData = selectedContinent.countries.reduce<GameData>((acc: GameData, curr: Current) => {
+        console.log('CURRENT CURRENT CURRENT', curr)
+        // console.log('CURRENT CATEGORY DATA', curr[categoryData])
+        acc.gameData.push({ [curr.name]: curr[categoryData] })
+        return acc
+      }, { gameData: [], continent: selectedContinent.name, category: categoryData })
+      console.log("selected game data", selectedGameData)
+      setGameData(selectedGameData)
   }
 
   return (
