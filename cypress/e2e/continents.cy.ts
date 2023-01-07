@@ -58,7 +58,8 @@ describe('continents spec', () => {
   });
   it('Should display trivia game mode', () => {
     cy.get('.continent-buttons > div :nth-child(1)').click()
-    cy.get('.category-buttons').click({ multiple: true})
+    // cy.get('.category-buttons').click({ multiple: true})
+    cy.get('[name="emoji"]').click()
   })
 })
 
