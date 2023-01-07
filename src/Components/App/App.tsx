@@ -14,18 +14,18 @@ interface Guesses {
 }
 
 type ContinentsData = {
-countries: {
-      capital: string,
-      code: string,
-      currency: string,
-      emoji: string,
-      languages: {
-        name: string,
-        native: string
-      }[],
+  countries: {
+    capital: string,
+    code: string,
+    currency: string,
+    emoji: string,
+    languages: {
       name: string,
-      states: {name: string}[],
-    }[]
+      native: string
+    }[],
+    name: string,
+    states: { name: string }[],
+  }[]
 }
 
 const App: React.FC = () => {
@@ -95,6 +95,7 @@ const App: React.FC = () => {
     console.log("selected game data", selectedGameData)
     setGameData(selectedGameData)
   }
+
 
   return (
     <main className="app-container">
