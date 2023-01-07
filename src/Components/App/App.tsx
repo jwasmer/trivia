@@ -19,16 +19,16 @@ export interface Guesses {
 
 export interface GuessScoreCount {
   correct: number,
-  incorrect: number
+  total: number
 }
 
 export interface Score {
-  [country: string]: number | undefined
-  Americas?: number
-  Asia?: number
-  Oceania?: number
-  Europe?: number
-  Africa?: number
+  [country: string]: number | string | undefined
+  Americas?: number | string
+  Asia?: number | string
+  Oceania?: number | string
+  Europe?: number | string
+  Africa?: number | string
 }
 
 export interface KeepScore {
@@ -45,23 +45,23 @@ const App: React.FC = () => {
   const [guesses, setGuesses] = useState<Guesses>({ 
     Americas: {
       correct: 0, 
-      incorrect: 0
+      total: 0
     }, 
     Asia: {
       correct: 0, 
-      incorrect: 0
+      total: 0
     }, 
     Oceania: {
       correct: 0, 
-      incorrect: 0
+      total: 0
     }, 
     Europe: {
       correct: 0, 
-      incorrect: 0
+      total: 0
     }, 
     Africa: {
       correct: 0, 
-      incorrect: 0
+      total: 0
     } 
   })
 
@@ -89,11 +89,11 @@ const App: React.FC = () => {
     const continents: string[] = Object.keys(guesses)
 
     const score: Score = continents.reduce((acc: Score, val: string | keyof Score) => {
-      if (guesses[val].correct + guesses[val].incorrect === 0) {
-        acc[val] = -1
+      if (guesses[val].total === 0) {
+        acc[val] = "Not attempted!"
       }
       else {
-        acc[val] = guesses[val].correct / (guesses[val].correct + guesses[val].incorrect)
+        acc[val] = `${guesses[val].correct / (guesses[val].total)}%`
       }
 
       return acc
