@@ -5,12 +5,16 @@ import { CountriesData } from '../../countries.model'
 interface CountriesProps {
   continents: CountriesData[]
   continent?: CountriesData[]
-  assignSelections: (newSelection: object | string) => void
+  assignSelections?: selections | any
   filterSelections: (categoryData: string) => void
 }
 
-type CategoryButton = {
+interface CategoryButton {
   assignCategory: (event: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+interface selections {
+  assignSelections: (newSelection: object | string) => void
 }
 
 type EventTarget = {
