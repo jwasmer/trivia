@@ -4,24 +4,69 @@ import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
 import Trivia from '../Trivia/Trivia'
+import Scoreboard from '../Scoreboard/Scoreboard'
 import { CountriesData } from '../../countries.model'
 
-interface Guesses {
-  Americas: number,
-  Asia: number,
-  Oceania: number,
-  Europe: number,
-  Africa: number
+// ---------- TypeScript Interfaces ----------
+
+export interface Guesses {
+  [country: string]: GuessScoreCount
+  Americas: GuessScoreCount
+  Asia: GuessScoreCount
+  Oceania: GuessScoreCount
+  Europe: GuessScoreCount
+  Africa: GuessScoreCount
 }
 
+export interface GuessScoreCount {
+  correct: number,
+  total: number
+}
+
+export interface Score {
+  [country: string]: number | string | undefined
+  Americas?: number | string
+  Asia?: number | string
+  Oceania?: number | string
+  Europe?: number | string
+  Africa?: number | string
+}
+
+export interface KeepScore {
+  (guesses: Guesses): Score
+}
+
+// ---------- Component & Hook Declarations ----------
 
 const App: React.FC = () => {
 
   const [data, setData] = useState<CountriesData[]>([])
   const [selectedContinent, setSelectedContinentApp] = useState({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
-  const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
-  const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
+  const [guesses, setGuesses] = useState<Guesses>({ 
+    Americas: {
+      correct: 0, 
+      total: 0
+    }, 
+    Asia: {
+      correct: 0, 
+      total: 0
+    }, 
+    Oceania: {
+      correct: 0, 
+      total: 0
+    }, 
+    Europe: {
+      correct: 0, 
+      total: 0
+    }, 
+    Africa: {
+      correct: 0, 
+      total: 0
+    } 
+  })
+
+  // -------- Game Data Fetch ----------
 
   const initApp = async () => {
     try {
@@ -38,11 +83,26 @@ const App: React.FC = () => {
     console.log("data", data)
   }, [])
 
-  const keepScore = (continent: keyof Guesses): string => {
-    const total = correctGuesses[continent] + incorrectGuesses[continent]
-    const score = (correctGuesses[continent] / total * 100).toFixed() + '%'
+  // -------- Game Logic ----------
+
+  const keepScore: KeepScore = (guesses: Guesses): Score => {
+
+    const continents: string[] = Object.keys(guesses)
+
+    const score: Score = continents.reduce((acc: Score, val: string | keyof Score) => {
+      if (guesses[val].total === 0) {
+        acc[val] = "Not attempted!"
+      }
+      else {
+        acc[val] = `${guesses[val].correct / (guesses[val].total)}%`
+      }
+
+      return acc
+    }, {})
+
     return score
   }
+
   const assignSelections = (newSelection: object | string)  => {
     if (newSelection === 'emoji' || newSelection === 'capitols' || newSelection === 'languages') {
       setSelectedCategoryApp(newSelection)
@@ -52,6 +112,9 @@ const App: React.FC = () => {
       console.log("CONTINENT TYPE", newSelection)
     }
   }
+
+// ---------- 
+
   return (
     <main className="app-container">
        <NavLink to='/' className='home-link'>
@@ -79,6 +142,10 @@ const App: React.FC = () => {
         <Route
           path="/h"
           element={<Trivia countries={data}/>}
+        />
+        <Route
+          path="/scoreboard"
+          element={<Scoreboard keepScore={keepScore} guesses={guesses} />} 
         />
       </Routes>
     </main>
