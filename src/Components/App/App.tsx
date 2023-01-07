@@ -31,7 +31,7 @@ type ContinentsData = {
 const App: React.FC = () => {
 
   const [data, setData] = useState<CountriesData[]>([])
-  const [selectedContinent, setSelectedContinentApp] = useState<ContinentsData | {}>({})
+  const [selectedContinent, setSelectedContinentApp] = useState<ContinentsData | any>({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
   const [gameData, setGameData] = useState([])
   const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
@@ -68,33 +68,39 @@ const App: React.FC = () => {
     }
   }
 
-  type GameData = {
-    gameData: {}[]
-    continent: string
-    category: string
-    selectedGameData: () => void
-    name: string
-  }
+  // type GameData = {
+  //   gameData: {}[]
+  //   continent: string
+  //   category: string
+  //   selectedGameData?: () => void
+  //   name?: string
+  // }
 
-  type Current = {
-    code: string
-    name: string
-    capital: string | null
-    emoji: string | null
-    languages: {name: string, native: string}[] | null
-    states: []
-  }
+  // type Current = {
+  //   code: string
+  //   name: string
+  //   capital: string | null
+  //   emoji: string | null
+  //   languages: {name: string, native: string}[] | null
+  //   states: []
+  // }
 
   const filterSelections = (categoryData: string) => {
-    // console.log("selected continent at filter", selectedContinent)
-      const selectedGameData = selectedContinent.countries.reduce<GameData>((acc: GameData, curr: Current) => {
-        console.log('CURRENT CURRENT CURRENT', curr)
-        // console.log('CURRENT CATEGORY DATA', curr[categoryData])
-        acc.gameData.push({ [curr.name]: curr[categoryData] })
-        return acc
-      }, { gameData: [], continent: selectedContinent.name, category: categoryData })
-      console.log("selected game data", selectedGameData)
+    console.log("selected continent at filter", selectedContinent)
+    let gameData = []
+    for (let country of selectedContinent.countries) {
+      gameData.push({ [country.name]: country[categoryData] })
+    }
+    const selectedGameData: any = {gameData: gameData, continent: selectedContinent.name, category: categoryData}
+      // const selectedGameData = selectedContinent.countries.reduce<GameData>((acc: GameData, curr: Current | any) => {
+      //   console.log('CURRENT CURRENT CURRENT', curr)
+      //   // console.log('CURRENT CATEGORY DATA', curr[categoryData])
+      //   acc.gameData.push({ [curr.name]: curr[categoryData] })
+      //   return acc
+      // }, { gameData: [], continent: selectedContinent.name, category: categoryData })
+      // console.log("selected game data", selectedGameData)
       setGameData(selectedGameData)
+      console.log('SELECTED GAME DATA', gameData)
   }
 
   return (
