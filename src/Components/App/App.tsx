@@ -68,18 +68,8 @@ const App: React.FC = () => {
     }
   }
 
-  // type Filter = {
-  //   filterSelections: () => void
-  //   selectedGameData: {gameData: Array, continent: string, }
-  // }
-  // type Filter = {
-  //   filterSelections: () => void
-
-  // }
-
   type GameData = {
     gameData: {}
-    // gamedata: [{"Canada": "Montreal"}]
     continent: string
     category: string
     selectedGameData: () => void
@@ -95,7 +85,6 @@ const App: React.FC = () => {
     console.log("selected game data", selectedGameData)
     setGameData(selectedGameData)
   }
-
 
   return (
     <main className="app-container">
