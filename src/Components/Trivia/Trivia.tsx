@@ -103,18 +103,6 @@ const displayNextButton = () => {
   console.log(count);
 }
 
-const [count, setCount] = useState(0);
-const [shuffledArray, setShuffledArray] = useState(shuffle(tempArray))
-const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
-const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
-const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
-const [currentChoices, setCurrentChoices] = useState([
-  <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
-  <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
-  <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
-  <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
-])
-
 const resetQuestion = () => {
   setNextButtonStatus("next-button hidden")
   shuffledArray.shift()
@@ -129,7 +117,19 @@ const resetQuestion = () => {
   ])
 }
 
- 
+const [count, setCount] = useState(0);
+const [score, setScore] = useState(0);
+const [shuffledArray, setShuffledArray] = useState(shuffle(tempArray))
+const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
+const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
+const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
+const [currentChoices, setCurrentChoices] = useState([
+  <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
+  <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
+  <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
+  <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
+])
+
  return (
    <div className="questions-content">
     <div className="question">
