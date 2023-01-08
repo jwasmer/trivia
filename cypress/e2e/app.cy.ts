@@ -21,7 +21,7 @@ describe('template spec', () => {
 
   it('Should route user to game options page when "select game" button is clicked', () => {
     cy.get('[data-cy="select-game-btn"]').click()
-    cy.url().should("equal", "http://localhost:3000/play")
+    cy.url().should("equal", "http://localhost:3000/selections")
   })
 
   it('Should route user to scoreboard page when "view scoreboard" button is clicked', () => {
