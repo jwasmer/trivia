@@ -7,6 +7,7 @@ interface CountriesProps {
   continents: CountriesData[]
   continent?: CountriesData[]
   assignSelections?: selections | any
+  filterSelections: (categoryData: string) => void
 }
 
 interface CategoryButton {
@@ -25,6 +26,7 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const [selectedContinent, setSelectedContinent] = useState({})
   const contienentKeys = Object.keys(selectedContinent)
   const [selectedCategory, setSelectedCategory] = useState('')
+  
   const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
       <button className="option-button" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
@@ -38,6 +40,7 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
     event.preventDefault()
     props.assignSelections(event.currentTarget.name)
     setSelectedCategory(event.currentTarget.name)
+    props.filterSelections(event.currentTarget.name)
   }
   return (
     <div className='continent-buttons'>
