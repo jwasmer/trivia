@@ -41,11 +41,11 @@ export interface KeepScore {
 const App: React.FC = () => {
 
   const [data, setData] = useState<CountriesData[]>([])
-  const [selectedContinent, setSelectedContinentApp] = useState<ContinentsData | any>({})
+  const [selectedContinent, setSelectedContinentApp] = useState<CountriesData | any>({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
   const [gameData, setGameData] = useState({})
-  const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
-  const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
+  // const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
+  // const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
   const [guesses, setGuesses] = useState<Guesses>({ 
     Americas: {
       correct: 0, 
