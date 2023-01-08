@@ -47,6 +47,38 @@ const Trivia: React.FC <CountriesProps> = (countries) => {
   {
     country: 'South Africa',
     emoji: '🇿🇦',
+  },
+  {
+    country: 'Ghana',
+    emoji: '🇬🇭',
+  },
+  {
+    country: 'Gabon',
+    emoji: '🇬🇦',
+  },
+  {
+    country: 'Ethiopia',
+    emoji: '🇪🇹',
+  },
+  {
+    country: 'Angola',
+    emoji: '🇦🇴',
+  },
+  {
+    country: 'Burkina Faso',
+    emoji: '🇧🇫',
+  },
+  {
+    country: 'Burundi',
+    emoji: '🇧🇮',
+  },
+  {
+    country: 'Botswana',
+    emoji: '🇧🇼',
+  },
+  {
+    country: 'DRC',
+    emoji: '🇨🇩',
   }
  ]
 
@@ -65,33 +97,38 @@ const shuffle = (array: any) => {
   return array;
 }
 
+const displayNextButton = () => {
+  setNextButtonStatus("next-button")
+  setCount(count + 1)
+  console.log(count);
+}
+
+const [count, setCount] = useState(0);
 const [shuffledArray, setShuffledArray] = useState(shuffle(tempArray))
 const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
 const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
 const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
-
-//for each question made, you need to see if subArray[0] is already present. Because that will always be the right answer.
-//If so, then each successive question needs to avoid using that country to fill ANY position. Would be lame if "Algeria" was the answer to 
-//Question 1, but you then see "Algeria" again in Question 3.
-
-const resetQuestion = () => {
-  setNextButtonStatus("next-button hidden")
-  tempArray.shift()
-  setShuffledArray(shuffle(tempArray))
-  setRandomOrder(shuffle([0, 1, 2, 3]))
-  setCurrentFlag(shuffledArray[0].emoji)
-}
-
- const displayNextButton = () => {
-  setNextButtonStatus("next-button")
-}
-
-const currentChoices = [
+const [currentChoices, setCurrentChoices] = useState([
   <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
   <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
   <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
   <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
-]
+])
+
+const resetQuestion = () => {
+  setNextButtonStatus("next-button hidden")
+  shuffledArray.shift()
+  setShuffledArray(shuffle(shuffledArray))
+  setRandomOrder(shuffle([0, 1, 2, 3]))
+  setCurrentFlag(shuffledArray[0].emoji)
+  setCurrentChoices([
+    <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
+    <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
+    <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
+    <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
+  ])
+}
+
  
  return (
    <div className="questions-content">
