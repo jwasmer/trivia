@@ -33,7 +33,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     initApp()
-    console.log("data", data)
+    console.log("data has loaded!", data)
   }, [])
 
   const keepScore = (continent: keyof Guesses): string => {
