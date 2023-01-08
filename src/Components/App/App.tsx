@@ -15,7 +15,6 @@ interface Guesses {
 
 
 const App: React.FC = () => {
-
   const [data, setData] = useState<CountriesData[]>([])
   const [selectedContinent, setSelectedContinentApp] = useState({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
