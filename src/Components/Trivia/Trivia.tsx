@@ -79,7 +79,7 @@ const resetQuestion = () => {
   setRandomOrder(shuffle([0, 1, 2, 3]))
 }
 
-// const randomizedArray = shuffle(tempArray)
+// const randomizedArray  = shuffle(tempArray)
 
  const currentQuestion = (
     <div className="card">
