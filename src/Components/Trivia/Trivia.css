@@ -56,3 +56,7 @@
 #mc-a {
     background-color: #94B563;
 }
+
+.hidden {
+    display: none;
+}

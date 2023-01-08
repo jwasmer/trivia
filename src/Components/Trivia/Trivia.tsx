@@ -23,7 +23,6 @@ type CountriesProps = {
 }
  
 const Trivia: React.FC <CountriesProps> = (countries) => {
- const [selectedCountry, setSelectedCountry] = useState({})
  const tempArray = [
   {
     country: 'Algeria',
@@ -66,23 +65,39 @@ const shuffle = (array: any) => {
   return array;
 }
 
-const randomizedArray = shuffle(tempArray)
+const [shuffledArray, setShuffledArray] = useState(shuffle(tempArray))
+const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
+const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
+
+//for each question made, you need to see if subArray[0] is already present. Because that will always be the right answer.
+//If so, then each successive question needs to avoid using that country to fill ANY position. Would be lame if "Algeria" was the answer to 
+//Question 1, but you then see "Algeria" again in Question 3.
+
+const resetQuestion = () => {
+  tempArray.shift()
+  setShuffledArray(shuffle(tempArray))
+  setRandomOrder(shuffle([0, 1, 2, 3]))
+}
+
+// const randomizedArray = shuffle(tempArray)
 
  const currentQuestion = (
     <div className="card">
       <h2 className="which-question">Which country uses this flag?</h2>
-      <h1 className="emoji">{randomizedArray[0].emoji}</h1>  
+      <h1 className="emoji">{shuffledArray[0].emoji}</h1>  
     </div>
  )
 
-const currentChoices = [
-  <button className="mc-button" id="mc-a">{randomizedArray[0].country}</button>,
-  <button className="mc-button" id="mc-b">{randomizedArray[1].country}</button>,
-  <button className="mc-button" id="mc-c">{randomizedArray[2].country}</button>,
-  <button className="mc-button" id="mc-d">{randomizedArray[3].country}</button>
-]
+ const displayNextButton = () => {
+  setNextButtonStatus("next-button")
+}
 
-const randomOrder = shuffle([0, 1, 2, 3])
+const currentChoices = [
+  <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
+  <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
+  <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
+  <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
+]
 
  //makebuttonappear()
  //clickbutton(), which fires reset() and newquestion()
@@ -90,11 +105,14 @@ const randomOrder = shuffle([0, 1, 2, 3])
  return (
    <div className="questions-content">
      <div className="question">{currentQuestion}</div>
-     <div className='mc-buttons'>
+     <div className="mc-buttons">
       {currentChoices[randomOrder[0]]}
       {currentChoices[randomOrder[1]]}
       {currentChoices[randomOrder[2]]}
       {currentChoices[randomOrder[3]]}
+      </div>
+      <div className="next-button-container">
+        {<button className={nextButtonStatus} onClick={() => resetQuestion}>Next!</button>}
       </div>
    </div>
  )
