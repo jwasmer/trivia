@@ -22,6 +22,7 @@ describe('continents spec', () => {
   it('Should display trivia game mode', () => {
     cy.get('.continent-button').click()
     cy.get('[name="emoji"]').click()
+    // cy.location("pathname").should("eq", "/game")
   })
 })
 
