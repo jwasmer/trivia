@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ButtonHTMLAttributes, useRef } from 'react'
 import { SyntheticEvent } from 'react'
 import { CountriesData } from '../../countries.model'
+import './Continents.css'
 
 interface CountriesProps {
   continents: CountriesData[]
@@ -28,7 +29,7 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   
   const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
-      <button onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
+      <button className="option-button" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
     )
   })
   const assignData = (continent: object) => {
@@ -43,12 +44,13 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   }
   return (
     <div className='continent-buttons'>
+      <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-gif"/>
       {!contienentKeys.length && <div>{continentsButtons}</div>}
       {contienentKeys.length > 0 && selectedCategory === '' ?
         <div>
-          <button key="emojis" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
-          <button key="capitals" name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
-          <button key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
+          <button className="option-button" key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
+          <button className="option-button" key="capital" name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
+          <button className="option-button" key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
         </div>
         : null}
     </div>
