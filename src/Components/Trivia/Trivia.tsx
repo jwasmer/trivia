@@ -68,25 +68,19 @@ const shuffle = (array: any) => {
 const [shuffledArray, setShuffledArray] = useState(shuffle(tempArray))
 const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
 const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
+const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
 
 //for each question made, you need to see if subArray[0] is already present. Because that will always be the right answer.
 //If so, then each successive question needs to avoid using that country to fill ANY position. Would be lame if "Algeria" was the answer to 
 //Question 1, but you then see "Algeria" again in Question 3.
 
 const resetQuestion = () => {
+  setNextButtonStatus("next-button hidden")
   tempArray.shift()
   setShuffledArray(shuffle(tempArray))
   setRandomOrder(shuffle([0, 1, 2, 3]))
+  setCurrentFlag(shuffledArray[0].emoji)
 }
-
-// const randomizedArray  = shuffle(tempArray)
-
- const currentQuestion = (
-    <div className="card">
-      <h2 className="which-question">Which country uses this flag?</h2>
-      <h1 className="emoji">{shuffledArray[0].emoji}</h1>  
-    </div>
- )
 
  const displayNextButton = () => {
   setNextButtonStatus("next-button")
@@ -98,13 +92,15 @@ const currentChoices = [
   <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
   <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
 ]
-
- //makebuttonappear()
- //clickbutton(), which fires reset() and newquestion()
  
  return (
    <div className="questions-content">
-     <div className="question">{currentQuestion}</div>
+    <div className="question">
+      <div className="card">
+      <h2 className="which-question">Which country uses this flag?</h2>
+      <h1 className="emoji">{currentFlag}</h1>  
+    </div>
+     </div>
      <div className="mc-buttons">
       {currentChoices[randomOrder[0]]}
       {currentChoices[randomOrder[1]]}
@@ -112,7 +108,7 @@ const currentChoices = [
       {currentChoices[randomOrder[3]]}
       </div>
       <div className="next-button-container">
-        {<button className={nextButtonStatus} onClick={() => resetQuestion}>Next!</button>}
+        <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
       </div>
    </div>
  )
