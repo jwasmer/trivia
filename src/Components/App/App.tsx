@@ -11,7 +11,9 @@ import { CountriesData } from '../../countries.model'
 
 export interface Guesses {
   [country: string]: GuessScoreCount
-  Americas: GuessScoreCount
+  Antartica: GuessScoreCount
+  "North America": GuessScoreCount
+  "South America": GuessScoreCount
   Asia: GuessScoreCount
   Oceania: GuessScoreCount
   Europe: GuessScoreCount
@@ -25,7 +27,9 @@ export interface GuessScoreCount {
 
 export interface Score {
   [country: string]: number | string | undefined
-  Americas?: number | string
+  NorthAmerica?: number | string
+  SouthAmerica?: number | string
+  Antartica?: number | string
   Asia?: number | string
   Oceania?: number | string
   Europe?: number | string
@@ -44,10 +48,17 @@ const App: React.FC = () => {
   const [selectedContinent, setSelectedContinentApp] = useState<CountriesData | any>({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
   const [gameData, setGameData] = useState({})
-  // const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
-  // const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
-  const [guesses, setGuesses] = useState<Guesses>({ 
-    Americas: {
+  const [guesses, setGuesses] = useState<Guesses>(
+  { 
+    Antartica: {
+      correct: 0, 
+      total: 0
+    }, 
+    "North America": {
+      correct: 0, 
+      total: 0
+    }, 
+    "South America": {
       correct: 0, 
       total: 0
     }, 
