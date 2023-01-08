@@ -2,6 +2,7 @@ import React, { useState, useEffect, ButtonHTMLAttributes, useRef } from 'react'
 import { SyntheticEvent } from 'react'
 import { CountriesData } from '../../countries.model'
 import './Continents.css'
+import { Route, Routes, NavLink, Link } from 'react-router-dom'
 
 interface CountriesProps {
   continents: CountriesData[]
@@ -37,7 +38,6 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
     setSelectedContinent(continent)
   }
   const assignCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
     props.assignSelections(event.currentTarget.name)
     setSelectedCategory(event.currentTarget.name)
     props.filterSelections(event.currentTarget.name)
@@ -48,9 +48,11 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
       {!contienentKeys.length && <div>{continentsButtons}</div>}
       {contienentKeys.length > 0 && selectedCategory === '' ?
         <div>
+          <NavLink to="/play">
           <button className="option-button" key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
           <button className="option-button" key="capital" name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
           <button className="option-button" key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
+          </NavLink>
         </div>
         : null}
     </div>

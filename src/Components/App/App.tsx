@@ -49,36 +49,36 @@ const App: React.FC = () => {
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
   const [gameData, setGameData] = useState({})
   const [guesses, setGuesses] = useState<Guesses>(
-  { 
-    Antartica: {
-      correct: 0, 
-      total: 0
-    }, 
-    "North America": {
-      correct: 0, 
-      total: 0
-    }, 
-    "South America": {
-      correct: 0, 
-      total: 0
-    }, 
-    Asia: {
-      correct: 0, 
-      total: 0
-    }, 
-    Oceania: {
-      correct: 0, 
-      total: 0
-    }, 
-    Europe: {
-      correct: 0, 
-      total: 0
-    }, 
-    Africa: {
-      correct: 0, 
-      total: 0
-    } 
-  })
+    {
+      Antartica: {
+        correct: 0,
+        total: 0
+      },
+      "North America": {
+        correct: 0,
+        total: 0
+      },
+      "South America": {
+        correct: 0,
+        total: 0
+      },
+      Asia: {
+        correct: 0,
+        total: 0
+      },
+      Oceania: {
+        correct: 0,
+        total: 0
+      },
+      Europe: {
+        correct: 0,
+        total: 0
+      },
+      Africa: {
+        correct: 0,
+        total: 0
+      }
+    })
 
   // -------- Game Data Fetch ----------
 
@@ -127,6 +127,10 @@ const App: React.FC = () => {
     }
   }
 
+  const updateScore = (updatedGuesses) => {
+    setGuesses(updatedGuesses)
+  }
+
   const filterSelections = (categoryData: string) => {
     let gameData = []
     for (let country of selectedContinent.countries) {
@@ -138,6 +142,7 @@ const App: React.FC = () => {
 
   return (
     <main className="app-container">
+      {/* {console.log("gameData", gameData)} */}
       <NavLink to='/' className='home-link'>
         <h1 className="title" data-cy="title">Trivia Game</h1>
       </NavLink>
@@ -150,7 +155,7 @@ const App: React.FC = () => {
               alt="rotating earth gif"
               data-cy="earth-gif" />
             <div className="home-buttons">
-              <NavLink to='/play' className='select-link'>
+              <NavLink to='/selections' className='select-link'>
                 <button className="select-game" data-cy="select-game-btn">Select Game</button>
               </NavLink>
               <NavLink to='/scoreboard' className='scoreboard-link'>
@@ -159,19 +164,19 @@ const App: React.FC = () => {
             </div>
           </div>}
         />
-        {data.length && <Route
-          path="/play"
+        <Route
+          path="/selections"
           element={<Continents continents={data}
             assignSelections={assignSelections}
             filterSelections={filterSelections} />}
-        />}
-        <Route
-          path="/h"
-          element={<Trivia countries={data}/>}
         />
         <Route
           path="/scoreboard"
-          element={<Scoreboard keepScore={keepScore} guesses={guesses} />} 
+          element={<Scoreboard keepScore={keepScore} guesses={guesses} />}
+        />
+        <Route
+          path="/play"
+          element={<Trivia gameData={gameData} guesses={guesses} updateScore={updateScore} />}
         />
       </Routes>
     </main>
