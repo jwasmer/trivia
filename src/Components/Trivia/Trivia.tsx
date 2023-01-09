@@ -50,10 +50,10 @@ const resetQuestion = () => {
     setRandomOrder(shuffle([0, 1, 2, 3]))
     setCurrentFlag(shuffledArray[0].emoji)
     setCurrentChoices([
-      <button className="mc-button" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
-      <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
-      <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
-      <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+      <button data-cy="a" className="mc-button" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+      <button data-cy="b" className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+      <button data-cy="c" className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+      <button data-cy="d" className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
     ])
   }
 }
@@ -109,10 +109,10 @@ const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
 const [words, setWords] = useState("Which country uses this flag?")
 const [styling, setStyling] = useState("emoji")
 const [currentChoices, setCurrentChoices] = useState([
-  <button className="mc-button" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
-  <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
-  <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
-  <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+  <button data-cy="a" className="mc-button" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+  <button data-cy="b" className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+  <button data-cy="c" className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+  <button data-cy="d" className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
 ])
 
  return (
@@ -130,7 +130,7 @@ const [currentChoices, setCurrentChoices] = useState([
       {currentChoices[randomOrder[2]]}
       {currentChoices[randomOrder[3]]}
       </div>
-      <div className="next-button-container">
+      <div data-cy="next" className="next-button-container">
         <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
       </div>
    </div>
