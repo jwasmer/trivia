@@ -79,7 +79,7 @@ describe('continents spec', () => {
     cy.get('[data-cy="select-game-btn"]').should('exist')
   });
 
-  it('User sould be able to select flags or capitals', () => {
+  it('Should be able to select flags or capitals', () => {
     cy.get('#mc-a').click()
     cy.get('.next-button').click()
     cy.get('#mc-b').click()
@@ -110,7 +110,7 @@ describe('continents spec', () => {
     cy.get('#mc-d').should('exist')
   });
 
-  it('User sould be able to select Antartica', () => {
+  it('Should be able to select Antartica', () => {
     cy.get('#mc-a').click()
     cy.get('.next-button').click()
     cy.get('#mc-b').click()
@@ -140,6 +140,6 @@ describe('continents spec', () => {
     cy.get('#mc-c').should('exist')
     cy.get('#mc-d').should('exist')
   });
-  
+
 })
 
