@@ -11,15 +11,7 @@ interface TriviaProps {
       emoji: string
     }[]
   } | any
-  guesses: {
-    Africa?: {correct: number, total: number} | undefined
-    Antarctica?: {correct: number, total: number} | undefined
-    ASia?: {correct: number, total: number} | undefined
-    Europe?: {correct: number, total: number} | undefined
-    North_America?: {correct: number, total: number} | undefined
-    Oceania?: {correct: number, total: number} | undefined
-    South_America?: {correct: number, total: number} | undefined
-  } | any
+  guesses: Guesses
   updateScore: (updatedScore: Guesses) => void
 }
 

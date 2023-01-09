@@ -12,10 +12,6 @@ interface CountriesProps {
   filterSelections: (categoryData: string) => void
 }
 
-interface CategoryButton {
-  assignCategory: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
-
 interface selections {
   assignSelections: (newSelection: object | string) => void
 }
