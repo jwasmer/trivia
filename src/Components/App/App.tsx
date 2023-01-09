@@ -145,12 +145,12 @@ const App: React.FC = () => {
 
   return (
     <main className="app-container">
-      <NavLink to='/' className='home-link'>
+      <NavLink to='/trivia' className='home-link'>
         <h1 className="title" data-cy="title">Trivia Game</h1>
       </NavLink>
       <Routes>
         <Route
-          path="/"
+          path="/trivia"
           element={<div className="homepage-content">
             <img className="earth-gif"
               src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'}
