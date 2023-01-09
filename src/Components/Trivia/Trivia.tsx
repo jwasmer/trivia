@@ -130,8 +130,8 @@ const [currentChoices, setCurrentChoices] = useState([
       {currentChoices[randomOrder[2]]}
       {currentChoices[randomOrder[3]]}
       </div>
-      <div data-cy="next" className="next-button-container">
-        <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
+      <div className="next-button-container">
+        <button data-cy="next" className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
       </div>
    </div>
   </div>
