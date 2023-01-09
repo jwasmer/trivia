@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('app spec', () => {
   beforeEach(() => {
     cy.intercept('https://countries.trevorblades.com/',
     cy.stub()
