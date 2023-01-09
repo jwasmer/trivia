@@ -7,8 +7,6 @@ import Trivia from '../Trivia/Trivia'
 import Scoreboard from '../Scoreboard/Scoreboard'
 import { CountriesData } from '../../countries.model'
 
-// ---------- TypeScript Interfaces ----------
-
 export interface Guesses {
   [country: string]: GuessScoreCount
   Antartica: GuessScoreCount
@@ -39,14 +37,6 @@ export interface Score {
 export interface KeepScore {
   (guesses: Guesses): Score
 }
-
-// export interface GameData {
-//   category?: any
-//   continent?: any
-//   gameData?: any
-// }
-
-// ---------- Component & Hook Declarations ----------
 
 const App: React.FC = () => {
   const [data, setData] = useState<CountriesData[]>([])
@@ -85,8 +75,6 @@ const App: React.FC = () => {
       }
     })
 
-  // -------- Game Data Fetch ----------
-
   const initApp = async () => {
     try {
       const response = await getData()
@@ -101,8 +89,6 @@ const App: React.FC = () => {
     initApp()
     console.log("data has loaded!", data)
   }, [])
-
-  // -------- Game Logic ----------
 
   const keepScore: KeepScore = (guesses: Guesses): Score => {
 
