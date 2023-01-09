@@ -811,8 +811,266 @@
             ]
           }
         ]
+      },
+      {
+        "code": "AN",
+        "name": "Antarctica",
+        "countries": [
+          {
+            "code": "AQ",
+            "name": "Antarctica",
+            "emoji": "🇦🇶",
+            "capital": null,
+            "currency": null,
+            "states": [],
+            "languages": []
+          },
+          {
+            "code": "BV",
+            "name": "Bouvet Island",
+            "emoji": "🇧🇻",
+            "capital": null,
+            "currency": "NOK",
+            "states": [],
+            "languages": [
+              { "name": "Norwegian", "native": "Norsk" },
+              { "name": "Norwegian Bokmål", "native": "Norsk bokmål" },
+              { "name": "Norwegian Nynorsk", "native": "Norsk nynorsk" }
+            ]
+          },
+          {
+            "code": "GS",
+            "name": "South Georgia and the South Sandwich Islands",
+            "emoji": "🇬🇸",
+            "capital": "King Edward Point",
+            "currency": "GBP",
+            "states": [],
+            "languages": [{ "name": "English", "native": "English" }]
+          },
+          {
+            "code": "HM",
+            "name": "Heard Island and McDonald Islands",
+            "emoji": "🇭🇲",
+            "capital": null,
+            "currency": "AUD",
+            "states": [],
+            "languages": [{ "name": "English", "native": "English" }]
+          },
+          {
+            "code": "TF",
+            "name": "French Southern Territories",
+            "emoji": "🇹🇫",
+            "capital": "Port-aux-Français",
+            "currency": "EUR",
+            "states": [],
+            "languages": [{ "name": "French", "native": "Français" }]
+          }
+        ]
+      },
+      {
+        "code": "SA",
+        "name": "South America",
+        "countries": [
+          {
+            "code": "AR",
+            "name": "Argentina",
+            "emoji": "🇦🇷",
+            "capital": "Buenos Aires",
+            "currency": "ARS",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              },
+              {
+                "name": "Guarani",
+                "native": "Avañe'ẽ"
+              }
+            ]
+          },
+          {
+            "code": "BO",
+            "name": "Bolivia",
+            "emoji": "🇧🇴",
+            "capital": "Sucre",
+            "currency": "BOB,BOV",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              },
+              {
+                "name": "Aymara",
+                "native": "Aymar"
+              },
+              {
+                "name": "Quechua",
+                "native": "Runa Simi"
+              }
+            ]
+          },
+          {
+            "code": "BR",
+            "name": "Brazil",
+            "emoji": "🇧🇷",
+            "capital": "Brasília",
+            "currency": "BRL",
+            "languages": [
+              {
+                "name": "Portuguese",
+                "native": "Português"
+              }
+            ]
+          },
+          {
+            "code": "CL",
+            "name": "Chile",
+            "emoji": "🇨🇱",
+            "capital": "Santiago",
+            "currency": "CLF,CLP",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              }
+            ]
+          },
+          {
+            "code": "CO",
+            "name": "Colombia",
+            "emoji": "🇨🇴",
+            "capital": "Bogotá",
+            "currency": "COP",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              }
+            ]
+          },
+          {
+            "code": "EC",
+            "name": "Ecuador",
+            "emoji": "🇪🇨",
+            "capital": "Quito",
+            "currency": "USD",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              }
+            ]
+          },
+          {
+            "code": "FK",
+            "name": "Falkland Islands",
+            "emoji": "🇫🇰",
+            "capital": "Stanley",
+            "currency": "FKP",
+            "languages": [
+              {
+                "name": "English",
+                "native": "English"
+              }
+            ]
+          },
+          {
+            "code": "GF",
+            "name": "French Guiana",
+            "emoji": "🇬🇫",
+            "capital": "Cayenne",
+            "currency": "EUR",
+            "languages": [
+              {
+                "name": "French",
+                "native": "Français"
+              }
+            ]
+          },
+          {
+            "code": "GY",
+            "name": "Guyana",
+            "emoji": "🇬🇾",
+            "capital": "Georgetown",
+            "currency": "GYD",
+            "languages": [
+              {
+                "name": "English",
+                "native": "English"
+              }
+            ]
+          },
+          {
+            "code": "PE",
+            "name": "Peru",
+            "emoji": "🇵🇪",
+            "capital": "Lima",
+            "currency": "PEN",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              }
+            ]
+          },
+          {
+            "code": "PY",
+            "name": "Paraguay",
+            "emoji": "🇵🇾",
+            "capital": "Asunción",
+            "currency": "PYG",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              },
+              {
+                "name": "Guarani",
+                "native": "Avañe'ẽ"
+              }
+            ]
+          },
+          {
+            "code": "SR",
+            "name": "Suriname",
+            "emoji": "🇸🇷",
+            "capital": "Paramaribo",
+            "currency": "SRD",
+            "languages": [
+              {
+                "name": "Dutch",
+                "native": "Nederlands"
+              }
+            ]
+          },
+          {
+            "code": "UY",
+            "name": "Uruguay",
+            "emoji": "🇺🇾",
+            "capital": "Montevideo",
+            "currency": "UYI,UYU",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              }
+            ]
+          },
+          {
+            "code": "VE",
+            "name": "Venezuela",
+            "emoji": "🇻🇪",
+            "capital": "Caracas",
+            "currency": "VES",
+            "languages": [
+              {
+                "name": "Spanish",
+                "native": "Español"
+              }
+            ]
+          }
+        ]
       }
-
-     ]
+    ]
   }
 }

@@ -113,7 +113,7 @@ const App: React.FC = () => {
         acc[val] = "Not attempted!"
       }
       else {
-        acc[val] = `${guesses[val].correct / (guesses[val].total)}%`
+        acc[val] = `${guesses[val].correct / (guesses[val].total) * 100}%`
       }
 
       return acc
