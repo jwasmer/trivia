@@ -3,23 +3,89 @@ import React, { useState, useEffect } from 'react'
 import getData from "../../apicalls"
 import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
+import Trivia from '../Trivia/Trivia'
+import Scoreboard from '../Scoreboard/Scoreboard'
 import { CountriesData } from '../../countries.model'
 
-interface Guesses {
-  Americas: number,
-  Asia: number,
-  Oceania: number,
-  Europe: number,
-  Africa: number
+// ---------- TypeScript Interfaces ----------
+
+export interface Guesses {
+  [country: string]: GuessScoreCount
+  Antartica: GuessScoreCount
+  "North America": GuessScoreCount
+  "South America": GuessScoreCount
+  Asia: GuessScoreCount
+  Oceania: GuessScoreCount
+  Europe: GuessScoreCount
+  Africa: GuessScoreCount
 }
 
+export interface GuessScoreCount {
+  correct: number,
+  total: number
+}
+
+export interface Score {
+  [country: string]: number | string | undefined
+  NorthAmerica?: number | string
+  SouthAmerica?: number | string
+  Antartica?: number | string
+  Asia?: number | string
+  Oceania?: number | string
+  Europe?: number | string
+  Africa?: number | string
+}
+
+export interface KeepScore {
+  (guesses: Guesses): Score
+}
+
+// export interface GameData {
+//   category?: any
+//   continent?: any
+//   gameData?: any
+// }
+
+// ---------- Component & Hook Declarations ----------
 
 const App: React.FC = () => {
   const [data, setData] = useState<CountriesData[]>([])
-  const [selectedContinent, setSelectedContinentApp] = useState({})
+  const [selectedContinent, setSelectedContinentApp] = useState<CountriesData | any>({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
-  const [correctGuesses, setCorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
-  const [incorrectGuesses, setIncorrectGuesses] = useState<Guesses>({ Americas: 0, Asia: 0, Oceania: 0, Europe: 0, Africa: 0 })
+  const [gameData, setGameData] = useState({})
+  const [guesses, setGuesses] = useState<Guesses>(
+    {
+      Antartica: {
+        correct: 0,
+        total: 0
+      },
+      "North America": {
+        correct: 0,
+        total: 0
+      },
+      "South America": {
+        correct: 0,
+        total: 0
+      },
+      Asia: {
+        correct: 0,
+        total: 0
+      },
+      Oceania: {
+        correct: 0,
+        total: 0
+      },
+      Europe: {
+        correct: 0,
+        total: 0
+      },
+      Africa: {
+        correct: 0,
+        total: 0
+      }
+    })
+
+  // -------- Game Data Fetch ----------
 
   const initApp = async () => {
     try {
@@ -36,13 +102,28 @@ const App: React.FC = () => {
     console.log("data has loaded!", data)
   }, [])
 
-  const keepScore = (continent: keyof Guesses): string => {
-    const total = correctGuesses[continent] + incorrectGuesses[continent]
-    const score = (correctGuesses[continent] / total * 100).toFixed() + '%'
+  // -------- Game Logic ----------
+
+  const keepScore: KeepScore = (guesses: Guesses): Score => {
+
+    const continents: string[] = Object.keys(guesses)
+
+    const score: Score = continents.reduce((acc: Score, val: string | keyof Score) => {
+      if (guesses[val].total === 0) {
+        acc[val] = "Not attempted!"
+      }
+      else {
+        acc[val] = `${guesses[val].correct / (guesses[val].total)}%`
+      }
+
+      return acc
+    }, {})
+
     return score
   }
-  const assignSelections = (newSelection: object | string)  => {
-    if (newSelection === 'emoji' || newSelection === 'capitols' || newSelection === 'languages') {
+
+  const assignSelections = (newSelection: object | string) => {
+    if (newSelection === 'emoji' || newSelection === 'capital' || newSelection === 'languages') {
       setSelectedCategoryApp(newSelection)
       console.log("CATEGORY", newSelection)
     } else {
@@ -50,30 +131,58 @@ const App: React.FC = () => {
       console.log("CONTINENT TYPE", newSelection)
     }
   }
+
+  const updateScore = (updatedGuesses : any) => {
+    setGuesses(updatedGuesses)
+  }
+
+  const filterSelections = (categoryData: string) => {
+    let gameData = []
+    for (let country of selectedContinent.countries) {
+      gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
+    }
+    const selectedGameData: { gameData: [] | unknown, continent: string, category: string | [] } = { gameData: gameData, continent: selectedContinent.name, category: categoryData }
+    setGameData(selectedGameData)
+  }
+
   return (
     <main className="app-container">
-       <NavLink to='/' className='home-link'>
+      {/* {console.log("gameData", gameData)} */}
+      <NavLink to='/' className='home-link'>
         <h1 className="title" data-cy="title">Trivia Game</h1>
       </NavLink>
       <Routes>
         <Route
           path="/"
           element={<div className="homepage-content">
-            <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-gif"/>
+            <img className="earth-gif"
+              src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'}
+              alt="rotating earth gif"
+              data-cy="earth-gif" />
             <div className="home-buttons">
-            <NavLink to='/play' className='select-link'>
-              <button className="select-game" data-cy="select-game-btn">Select Game</button>
-            </NavLink>
-            <NavLink to='/scoreboard' className='scoreboard-link'>
-              <button className="view-scoreboard" data-cy="view-scoreboard-btn">View Scoreboard</button>
-            </NavLink>
+              <NavLink to='/selections' className='select-link'>
+                <button className="select-game" data-cy="select-game-btn">Select Game</button>
+              </NavLink>
+              <NavLink to='/scoreboard' className='scoreboard-link'>
+                <button className="view-scoreboard" data-cy="view-scoreboard-btn">View Scoreboard</button>
+              </NavLink>
             </div>
           </div>}
         />
-        {data.length && <Route
+        <Route
+          path="/selections"
+          element={<Continents continents={data}
+            assignSelections={assignSelections}
+            filterSelections={filterSelections} />}
+        />
+        <Route
+          path="/scoreboard"
+          element={<Scoreboard keepScore={keepScore} guesses={guesses} />}
+        />
+        <Route
           path="/play"
-          element={<Continents continents={data} assignSelections={assignSelections} />}
-        />}
+          element={<Trivia gameData={gameData} guesses={guesses} updateScore={updateScore} />}
+        />
       </Routes>
     </main>
   )
