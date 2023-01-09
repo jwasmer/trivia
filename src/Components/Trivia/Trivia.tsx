@@ -8,7 +8,7 @@ interface TriviaProps {
 }
 
 const Trivia: React.FC<TriviaProps> = (props) => {
-
+console.log("SELECTED GAME DATA", props.gameData)
 const importedArray = props.gameData.gameData.map((country: any) => country)
 const shuffle = (array: any) => {
   var length = array.length, current, remaining;
@@ -38,7 +38,7 @@ const displayNextButton = () => {
 const resetQuestion = () => {
   if(count > 9) {
     setWords(`You got ${score}/10 correct!`)
-    setCurrentFlag("Return home to play another round.")
+    setCurrentFlag("Click Trivia Game to return home")
     setStyling("which-question")
     props.guesses[props.gameData.continent].total += 10
     props.guesses[props.gameData.continent].correct += score
@@ -106,7 +106,7 @@ const [shuffledArray, setShuffledArray] = useState(shuffle(importedArray))
 const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
 const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
 const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
-const [words, setWords] = useState("Which country uses this flag?")
+const [words, setWords] = useState("Which country does this pertain to?")
 const [styling, setStyling] = useState("emoji")
 const [currentChoices, setCurrentChoices] = useState([
   <button className="mc-button" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
