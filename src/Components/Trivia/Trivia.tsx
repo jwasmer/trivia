@@ -25,68 +25,8 @@ interface TriviaProps {
 }
 
 const Trivia: React.FC<TriviaProps> = (props) => {
-  const importedArray = props.gameData.gameData.reduce((acc: any, country: any) => {
 
-  })
- const tempArray = [
-  {
-    country: 'Algeria',
-    emoji: '🇩🇿',
-  },
-  {
-    country: 'Tunisia',
-    emoji: '🇹🇳',
-  },
-  {
-    country: 'Libya',
-    emoji: '🇱🇾',
-  },
-  {
-    country: 'Morocco',
-    emoji: '🇲🇦',
-  },
-  {
-    country: 'Egypt',
-    emoji: '🇪🇬',
-  },
-  {
-    country: 'South Africa',
-    emoji: '🇿🇦',
-  },
-  {
-    country: 'Ghana',
-    emoji: '🇬🇭',
-  },
-  {
-    country: 'Gabon',
-    emoji: '🇬🇦',
-  },
-  {
-    country: 'Ethiopia',
-    emoji: '🇪🇹',
-  },
-  {
-    country: 'Angola',
-    emoji: '🇦🇴',
-  },
-  {
-    country: 'Burkina Faso',
-    emoji: '🇧🇫',
-  },
-  {
-    country: 'Burundi',
-    emoji: '🇧🇮',
-  },
-  {
-    country: 'Botswana',
-    emoji: '🇧🇼',
-  },
-  {
-    country: 'DRC',
-    emoji: '🇨🇩',
-  }
- ]
-
+const importedArray = props.gameData.gameData.map((country: any) => country)
 const shuffle = (array: any) => {
   var length = array.length, current, remaining;
 
@@ -103,45 +43,57 @@ const shuffle = (array: any) => {
 }
 
 const displayNextButton = () => {
-  setNextButtonStatus("next-button")
+  if(count < 10 ) {
+    setNextButtonStatus("next-button")
+  }
   setCount(count + 1)
   console.log(count);
-  console.log(props.gameData)
+  console.log('importedArray: ', importedArray)
+  console.log('shuffledArray: ', shuffledArray)
 }
 
 const resetQuestion = () => {
-  setNextButtonStatus("next-button hidden")
-  shuffledArray.shift()
-  setShuffledArray(shuffle(shuffledArray))
-  setRandomOrder(shuffle([0, 1, 2, 3]))
-  setCurrentFlag(props.gameData.gameData[0].emoji)
-  setCurrentChoices([
-    <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
-    <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
-    <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
-    <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
-  ])
+  if(count > 9) {
+    setWords(`You got ${score}/10 correct!`)
+    setCurrentFlag("Return home to play another round.")
+    setStyling("which-question")
+  } else {
+    setNextButtonStatus("next-button hidden")
+    shuffledArray.shift()
+    setShuffledArray(shuffle(shuffledArray))
+    setRandomOrder(shuffle([0, 1, 2, 3]))
+    setCurrentFlag(shuffledArray[0].emoji)
+    setCurrentChoices([
+      <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].name}</button>,
+      <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].name}</button>,
+      <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].name}</button>,
+      <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].name}</button>
+    ])
+  }
 }
 
 const [count, setCount] = useState(0);
 const [score, setScore] = useState(0);
-const [shuffledArray, setShuffledArray] = useState(shuffle(tempArray))
+const [shuffledArray, setShuffledArray] = useState(shuffle(importedArray))
 const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
 const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
-const [currentFlag, setCurrentFlag] = useState(props.gameData.gameData[0].emoji)
+const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
+const [words, setWords] = useState("Which country uses this flag?")
+const [styling, setStyling] = useState("emoji")
 const [currentChoices, setCurrentChoices] = useState([
-  <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
-  <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
-  <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].country}</button>,
-  <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].country}</button>
+  <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].name}</button>,
+  <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].name}</button>,
+  <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].name}</button>,
+  <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].name}</button>
 ])
 
  return (
-   <div className="questions-content">
+  <div className="trivia-container">
+    <div className="questions-content">
     <div className="question">
       <div className="card">
-      <h2 className="which-question">Which country uses this flag?</h2>
-      <h1 className="emoji">{currentFlag}</h1>  
+      <h2 className="which-question">{words}</h2>
+      <h1 className={styling}>{currentFlag}</h1>  
     </div>
      </div>
      <div className="mc-buttons">
@@ -154,6 +106,7 @@ const [currentChoices, setCurrentChoices] = useState([
         <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
       </div>
    </div>
+  </div>
  )
 }
  
