@@ -34,7 +34,7 @@ const Trivia: React.FC<TriviaProps> = (props) => {
   const resetQuestion = () => {
     if (count > 9) {
       setWords(`You got ${score}/10 correct!`)
-      setCurrentFlag("Click Trivia Game to return home")
+      setCurrentFlag("Click the logo to return home")
       setStyling("which-question")
       props.guesses[props.gameData.continent].total += 10
       props.guesses[props.gameData.continent].correct += score
@@ -136,7 +136,7 @@ const Trivia: React.FC<TriviaProps> = (props) => {
           {currentChoices[randomOrder[2]]}
           {currentChoices[randomOrder[3]]}
         </div>
-        {currentFlag !== "Click Trivia Game to return home" &&
+        {currentFlag !== "Click the logo to return home" &&
           <div className="next-button-container">
             <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
           </div>}
