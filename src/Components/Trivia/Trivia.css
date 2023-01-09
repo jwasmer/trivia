@@ -69,6 +69,25 @@
     background-color: #9e0000;
 }
 
+.next-button {
+    margin-left: 60vw;
+    height: 2vw;
+    width: 10vw;
+    font-family: 'Coiny';
+    font-size: 1vw;
+    color: #FFFFFF;
+    background-color: #00a3b3;
+    border: none;
+    border-radius: .7vw;
+}
+
+.next-button:hover {
+    cursor: pointer;
+    background-color: #006871;
+    transform: scale(1.1);
+    transition: all ease-in-out .3s;
+}
+
 .hidden {
     display: none;
 }
