@@ -40,6 +40,9 @@ const resetQuestion = () => {
     setWords(`You got ${score}/10 correct!`)
     setCurrentFlag("Return home to play another round.")
     setStyling("which-question")
+    props.guesses[props.gameData.continent].total += 10
+    props.guesses[props.gameData.continent].correct += score
+    props.updateScore(props.guesses)
   } else {
     setNextButtonStatus("next-button hidden")
     shuffledArray.shift()
