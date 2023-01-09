@@ -11,7 +11,7 @@ describe('continents spec', () => {
 
   it('Should display title and question', () => {
     cy.get('[data-cy="title"]').contains('Trivia Game')
-    cy.get('.which-question').contains('Which country does this pertain to?')
+    cy.get('.which-question').contains("Which country's flag is this?")
     cy.get('.emoji').should('exist')
   });
 
@@ -104,6 +104,7 @@ describe('continents spec', () => {
     cy.get('[data-cy="select-game-btn"]').click()
     cy.get('.continent-buttons > div > :nth-child(2)').click()
     cy.get('[name="capital"]').click()
+    cy.get('.which-question').contains("Which country's capital is this?")
     cy.get('#mc-a').should('exist')
     cy.get('#mc-b').should('exist')
     cy.get('#mc-c').should('exist')
