@@ -64,12 +64,54 @@ const resetQuestion = () => {
     setRandomOrder(shuffle([0, 1, 2, 3]))
     setCurrentFlag(shuffledArray[0].emoji)
     setCurrentChoices([
-      <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].name}</button>,
-      <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].name}</button>,
-      <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].name}</button>,
-      <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].name}</button>
+      <button className="mc-button" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+      <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+      <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+      <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
     ])
   }
+}
+
+const clickA = () => {
+  setScore(score + 1)
+  displayNextButton()
+  setCurrentChoices([
+    <button className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+    <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+    <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+    <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+  ])
+}
+
+const clickB = () => {
+  displayNextButton()
+  setCurrentChoices([
+    <button className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+    <button className="mc-button incorrect" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+    <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+    <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+  ])
+
+}
+
+const clickC = () => {
+  displayNextButton()
+  setCurrentChoices([
+    <button className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+    <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+    <button className="mc-button incorrect" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+    <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+  ])
+}
+
+const clickD = () => {
+  displayNextButton()
+  setCurrentChoices([
+    <button className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+    <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+    <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+    <button className="mc-button incorrect" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+  ])
 }
 
 const [count, setCount] = useState(0);
@@ -81,10 +123,10 @@ const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
 const [words, setWords] = useState("Which country uses this flag?")
 const [styling, setStyling] = useState("emoji")
 const [currentChoices, setCurrentChoices] = useState([
-  <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].name}</button>,
-  <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].name}</button>,
-  <button className="mc-button" id="mc-c" onClick={displayNextButton}>{shuffledArray[2].name}</button>,
-  <button className="mc-button" id="mc-d" onClick={displayNextButton}>{shuffledArray[3].name}</button>
+  <button className="mc-button" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+  <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+  <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+  <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
 ])
 
  return (

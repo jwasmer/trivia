@@ -53,8 +53,20 @@
     transition: all ease-in-out .3s;
 }
 
-#mc-a {
+.correct {
     background-color: #94B563;
+}
+
+.correct:hover {
+    background-color: #6c893f;
+}
+
+.incorrect {
+    background-color: #F90000;
+}
+
+.incorrect:hover {
+    background-color: #9e0000;
 }
 
 .hidden {
