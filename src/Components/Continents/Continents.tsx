@@ -50,7 +50,6 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
           <NavLink to="/play">
             <button data-cy="flags" className='continent-name option-name option-button continent-button' key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
             <button data-cy="capital" className='continent-name option-name option-button continent-button' name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
-            <button data-cy="languages" className='continent-name option-name option-button continent-button' name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
           </NavLink>
         </div>
         : null}
