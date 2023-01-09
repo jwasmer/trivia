@@ -8,7 +8,6 @@ interface TriviaProps {
 }
 
 const Trivia: React.FC<TriviaProps> = (props) => {
-  console.log("SELECTED GAME DATA", props.gameData)
   const importedArray = props.gameData.gameData.map((country: any) => country)
   const shuffle = (array: any) => {
     var length = array.length, current, remaining;
@@ -30,9 +29,6 @@ const Trivia: React.FC<TriviaProps> = (props) => {
       setNextButtonStatus("next-button")
     }
     setCount(count + 1)
-    console.log(count);
-    console.log('importedArray: ', importedArray)
-    console.log('shuffledArray: ', shuffledArray)
   }
 
   const resetQuestion = () => {
@@ -140,9 +136,10 @@ const Trivia: React.FC<TriviaProps> = (props) => {
           {currentChoices[randomOrder[2]]}
           {currentChoices[randomOrder[3]]}
         </div>
-        <div className="next-button-container">
-          <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
-        </div>
+        {currentFlag !== "Click Trivia Game to return home" &&
+          <div className="next-button-container">
+            <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
+          </div>}
       </div>
     </div>
   )
