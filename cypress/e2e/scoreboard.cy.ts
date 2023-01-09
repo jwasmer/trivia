@@ -1,10 +1,10 @@
 describe('continents spec', () => {
   beforeEach(() => {
-   cy.intercept('https://countries.trevorblades.com/',
-    cy.stub()
-      .callsFake(req => req.reply({ fixture: 'africa.json' }))).as('continents')
-      cy.visit('http://localhost:3000/') 
-      cy.wait('@continents')
+    cy.intercept('https://countries.trevorblades.com/',
+      cy.stub()
+        .callsFake(req => req.reply({ fixture: 'africa.json' }))).as('continents')
+    cy.visit('http://localhost:3000/')
+    cy.wait('@continents')
   })
 
   it('Should have score fields for each continent', () => {
@@ -33,10 +33,10 @@ describe('continents spec', () => {
     cy.get('[data-cy="flags"]').click()
     for (let i = 0; i < 9; i++) {
       cy.get('#mc-a').click()
-      cy.get('[data-cy="next"]').click()
+      cy.get('.next-button').click()
     }
     cy.get('#mc-b').click()
-    cy.get('[data-cy="next"]').click()
+    cy.get('.next-button').click()
     cy.get('[data-cy="title"]').click()
     cy.get('[data-cy="view-scoreboard-btn"]').click()
     cy.get('[data-cy="africa"]').should('include.text', '90%')
@@ -48,10 +48,11 @@ describe('continents spec', () => {
     cy.get('[data-cy="flags"]').click()
     for (let i = 0; i < 9; i++) {
       cy.get('#mc-a').click()
-      cy.get('[data-cy="next"]').click()
+      cy.get('.next-button').click()
     }
+
     cy.get('#mc-b').click()
-    cy.get('[data-cy="next"]').click()
+    cy.get('.next-button').click()
     cy.get('[data-cy="title"]').click()
     cy.get('[data-cy="view-scoreboard-btn"]').click()
     cy.get('[data-cy="africa"]').should('include.text', '90%')
@@ -61,7 +62,7 @@ describe('continents spec', () => {
     cy.get('[data-cy="flags"]').click()
     for (let i = 0; i < 10; i++) {
       cy.get('#mc-b').click()
-      cy.get('[data-cy="next"]').click()
+      cy.get('.next-button').click()
     }
     cy.get('[data-cy="title"]').click()
     cy.get('[data-cy="view-scoreboard-btn"]').click()
