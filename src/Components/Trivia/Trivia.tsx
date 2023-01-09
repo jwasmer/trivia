@@ -59,9 +59,7 @@ const Trivia: React.FC<TriviaProps> = (props) => {
   }
 
   const displayCategory = () => {
-    if (props.gameData.category === "languages") {
-      return 'language'
-    } else if (props.gameData.category === "emoji") {
+    if (props.gameData.category === "emoji") {
       return 'flag'
     } else if (props.gameData.category === "capital") {
       return 'capital'
