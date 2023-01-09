@@ -33,7 +33,9 @@
 }
 
 .mc-button {
-    height: 4vw;
+    /* height: 4vw; */
+    height: auto;
+    min-height: 8vh;
     width: 17vw;
     font-family: 'Coiny';
     font-size: 2vh;
