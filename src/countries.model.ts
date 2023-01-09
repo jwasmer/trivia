@@ -1,5 +1,4 @@
 export interface CountriesData {
-// continents: {
   code: string,
   name: string,
   countries: {
@@ -14,5 +13,4 @@ export interface CountriesData {
     name: string,
     states: {name: string}[],
   }[]
-// }[]
 }

@@ -6,37 +6,7 @@ import Continents from '../Continents/Continents'
 import Trivia from '../Trivia/Trivia'
 import Scoreboard from '../Scoreboard/Scoreboard'
 import { CountriesData } from '../../countries.model'
-
-// ---------- TypeScript Interfaces ----------
-
-export interface Guesses {
-  [country: string]: GuessScoreCount
-  Antartica: GuessScoreCount
-  "North America": GuessScoreCount
-  "South America": GuessScoreCount
-  Asia: GuessScoreCount
-  Oceania: GuessScoreCount
-  Europe: GuessScoreCount
-  Africa: GuessScoreCount
-}
-export interface GuessScoreCount {
-  correct: number,
-  total: number
-}
-export interface Score {
-  [country: string]: number | string | undefined
-  NorthAmerica?: number | string
-  SouthAmerica?: number | string
-  Antartica?: number | string
-  Asia?: number | string
-  Oceania?: number | string
-  Europe?: number | string
-  Africa?: number | string
-}
-
-export interface KeepScore {
-  (guesses: Guesses): Score
-}
+import { Guesses, Score, KeepScore} from '../../interfaces'
 
 // ---------- Component & Hook Declarations ----------
 

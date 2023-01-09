@@ -1,19 +1,6 @@
 import React, { useState } from 'react'
 import './Trivia.css'
-import { Guesses } from '../App/App'
-interface TriviaProps {
-  gameData: { 
-    category: string
-    continent: string
-    gameData: {
-      usedInQuestion: boolean
-      name: string
-      emoji: string
-    }[]
-  } | any
-  guesses: Guesses
-  updateScore: (updatedScore: Guesses) => void
-}
+import { TriviaProps} from '../../interfaces'
 
 const Trivia: React.FC<TriviaProps> = (props) => {
   const importedArray = props.gameData.gameData.map((country: string) => country)
