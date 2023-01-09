@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ButtonHTMLAttributes } from 'react'
 import { CountriesData } from '../../countries.model'
 import { NavLink } from 'react-router-dom'
+import { KeepScore, Guesses, Score } from '../App/App'
 import './Trivia.css'
 
 //- MOSTLY DONE: need a randomizer to randomly select a country's flag... with the filter limiting it to the proper continent.
@@ -16,13 +17,17 @@ import './Trivia.css'
 
 
 // WIP: On initial page load, the first question should pop up. The user should get one try. Correct/incorrect should be stored globally to keep a scoreboard. After an option is clicked, a "next" button should appear.
-
-
-type CountriesProps = {
- countries: CountriesData[]
-}
  
-const Trivia: React.FC <CountriesProps> = (countries) => {
+interface TriviaProps {
+  gameData: any
+  guesses: any
+  updateScore: (categoryData: any) => void
+}
+
+const Trivia: React.FC<TriviaProps> = (props) => {
+  const importedArray = props.gameData.gameData.reduce((acc: any, country: any) => {
+
+  })
  const tempArray = [
   {
     country: 'Algeria',
@@ -101,6 +106,7 @@ const displayNextButton = () => {
   setNextButtonStatus("next-button")
   setCount(count + 1)
   console.log(count);
+  console.log(props.gameData)
 }
 
 const resetQuestion = () => {
@@ -108,7 +114,7 @@ const resetQuestion = () => {
   shuffledArray.shift()
   setShuffledArray(shuffle(shuffledArray))
   setRandomOrder(shuffle([0, 1, 2, 3]))
-  setCurrentFlag(shuffledArray[0].emoji)
+  setCurrentFlag(props.gameData.gameData[0].emoji)
   setCurrentChoices([
     <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
     <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
@@ -122,7 +128,7 @@ const [score, setScore] = useState(0);
 const [shuffledArray, setShuffledArray] = useState(shuffle(tempArray))
 const [nextButtonStatus, setNextButtonStatus] = useState("next-button hidden")
 const [randomOrder, setRandomOrder] = useState(shuffle([0, 1, 2, 3]))
-const [currentFlag, setCurrentFlag] = useState(shuffledArray[0].emoji)
+const [currentFlag, setCurrentFlag] = useState(props.gameData.gameData[0].emoji)
 const [currentChoices, setCurrentChoices] = useState([
   <button className="mc-button" id="mc-a" onClick={displayNextButton}>{shuffledArray[0].country}</button>,
   <button className="mc-button" id="mc-b" onClick={displayNextButton}>{shuffledArray[1].country}</button>,
