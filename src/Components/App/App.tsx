@@ -27,8 +27,8 @@ export interface GuessScoreCount {
 
 export interface Score {
   [country: string]: number | string | undefined
-  NorthAmerica?: number | string
-  SouthAmerica?: number | string
+  'North America'?: number | string
+  'South America'?: number | string
   Antartica?: number | string
   Asia?: number | string
   Oceania?: number | string
@@ -152,7 +152,7 @@ const App: React.FC = () => {
   return (
     <main className="app-container">
       <NavLink to='/' className='home-link'>
-        <h1 className="title" data-cy="title">Trivia Game</h1>
+        <h1 className="title" data-cy="title">Around the World</h1>
       </NavLink>
       <Routes>
         <Route
