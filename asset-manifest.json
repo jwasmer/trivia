@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/trivia/src/Components/App/App.tsx/static/css/main.de93ab5f.css",
+    "main.js": "/trivia/src/Components/App/App.tsx/static/js/main.ec2a77d4.js",
+    "static/js/787.dddbe7b4.chunk.js": "/trivia/src/Components/App/App.tsx/static/js/787.dddbe7b4.chunk.js",
+    "index.html": "/trivia/src/Components/App/App.tsx/index.html",
+    "main.de93ab5f.css.map": "/trivia/src/Components/App/App.tsx/static/css/main.de93ab5f.css.map",
+    "main.ec2a77d4.js.map": "/trivia/src/Components/App/App.tsx/static/js/main.ec2a77d4.js.map",
+    "787.dddbe7b4.chunk.js.map": "/trivia/src/Components/App/App.tsx/static/js/787.dddbe7b4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.de93ab5f.css",
+    "static/js/main.ec2a77d4.js"
+  ]
+}
