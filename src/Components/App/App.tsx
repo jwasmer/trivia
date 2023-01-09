@@ -40,6 +40,12 @@ export interface KeepScore {
   (guesses: Guesses): Score
 }
 
+// export interface GameData {
+//   category?: any
+//   continent?: any
+//   gameData?: any
+// }
+
 // ---------- Component & Hook Declarations ----------
 
 const App: React.FC = () => {
@@ -127,14 +133,14 @@ const App: React.FC = () => {
     }
   }
 
-  const updateScore = (updatedGuesses) => {
+  const updateScore = (updatedGuesses : any) => {
     setGuesses(updatedGuesses)
   }
 
   const filterSelections = (categoryData: string) => {
     let gameData = []
     for (let country of selectedContinent.countries) {
-      gameData.push({ [country.name]: country[categoryData], usedInQuestion: false })
+      gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
     }
     const selectedGameData: { gameData: [] | unknown, continent: string, category: string | [] } = { gameData: gameData, continent: selectedContinent.name, category: categoryData }
     setGameData(selectedGameData)
