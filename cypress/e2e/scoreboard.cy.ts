@@ -27,7 +27,7 @@ describe('continents spec', () => {
     cy.get('[data-cy="africa"]').should('include.text', 'Africa: Not attempted!')
   })
 
-  it('Should correctly update the score as questions are attempted', () => {
+  it('Should display 90% if 9/10 questions are attempted', () => {
     cy.get('[data-cy="select-game-btn"]').click()
     cy.get('[data-cy="Africa"]').click()
     cy.get('[data-cy="flags"]').click()
@@ -40,5 +40,31 @@ describe('continents spec', () => {
     cy.get('[data-cy="title"]').click()
     cy.get('[data-cy="view-scoreboard-btn"]').click()
     cy.get('[data-cy="africa"]').should('include.text', '90%')
+  })
+
+  it('Should track score between multiple game rounds', () => {
+    cy.get('[data-cy="select-game-btn"]').click()
+    cy.get('[data-cy="Africa"]').click()
+    cy.get('[data-cy="flags"]').click()
+    for (let i = 0; i < 9; i++) {
+      cy.get('#mc-a').click()
+      cy.get('[data-cy="next"]').click()
+    }
+    cy.get('#mc-b').click()
+    cy.get('[data-cy="next"]').click()
+    cy.get('[data-cy="title"]').click()
+    cy.get('[data-cy="view-scoreboard-btn"]').click()
+    cy.get('[data-cy="africa"]').should('include.text', '90%')
+    cy.get('[data-cy="title"]').click()
+    cy.get('[data-cy="select-game-btn"]').click()
+    cy.get('[data-cy="Africa"]').click()
+    cy.get('[data-cy="flags"]').click()
+    for (let i = 0; i < 10; i++) {
+      cy.get('#mc-b').click()
+      cy.get('[data-cy="next"]').click()
+    }
+    cy.get('[data-cy="title"]').click()
+    cy.get('[data-cy="view-scoreboard-btn"]').click()
+    cy.get('[data-cy="africa"]').should('include.text', '45%')
   })
 })
