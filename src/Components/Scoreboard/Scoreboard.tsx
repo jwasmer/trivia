@@ -6,7 +6,8 @@ export default function Scoreboard({ keepScore, guesses }: {keepScore: KeepScore
   return (
     <>
       <div>
-        <p>Americas: {score.Americas}</p> 
+        <p>North America: {score["North America"]}</p>
+        <p>South America: {score["South America"]}</p>
         <p>Asia: {score.Asia}</p>
         <p>Oceania: {score.Oceania}</p>
         <p>Europe: {score.Europe}</p>
