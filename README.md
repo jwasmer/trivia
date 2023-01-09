@@ -1,5 +1,5 @@
 # Overview
-Around the World is a world trivia game application that was created using TypeScript and GraphQl and tested with Cypress. Users navigating through the webpage can either check their score or can play trivia narrowing it down by continent and 3 categories.
+Around the World is a world trivia game application that was created using TypeScript and GraphQL and tested with Cypress. Users navigating through the webpage can either check their score or can play trivia narrowing it down by continent and 3 categories.
 
 ## Installation Instructions
 1. Clone down [this repository]('https://github.com/jwasmer/trivia')
@@ -27,9 +27,9 @@ Around the World is a world trivia game application that was created using TypeS
 * webpack
 
 ## Contributors 
-* Tim Thomas: [nalito223]
+* Tim Thomas: [nalito223]('https://github.com/nalito223/')
 * Lauren Frazier: [FrazierLE]('https://github.com/FrazierLE')
-* Evan Swanson: [EvanSSwanson]
+* Evan Swanson: [EvanSSwanson]('https://github.com/EvanSSwanson')
 * James Wasmer: [jwasmer]('https://github.com/jwasmer')
 
 ## Wins
