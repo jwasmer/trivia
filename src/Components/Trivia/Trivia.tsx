@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Trivia.css'
+import { Guesses } from '../App/App'
 interface TriviaProps {
   gameData: { 
     category: string
@@ -19,7 +20,7 @@ interface TriviaProps {
     Oceania?: {correct: number, total: number} | undefined
     South_America?: {correct: number, total: number} | undefined
   } | any
-  updateScore: (categoryData: number) => void
+  updateScore: (updatedScore: Guesses) => void
 }
 
 const Trivia: React.FC<TriviaProps> = (props) => {
