@@ -1,16 +1,30 @@
 import React, { useState } from 'react'
 import './Trivia.css'
-
 interface TriviaProps {
-  gameData: any
-  guesses: any
-  updateScore: (categoryData: any) => void
+  gameData: { 
+    category: string
+    continent: string
+    gameData: {
+      usedInQuestion: boolean
+      name: string
+      emoji: string
+    }[]
+  } | any
+  guesses: {
+    Africa?: {correct: number, total: number} | undefined
+    Antarctica?: {correct: number, total: number} | undefined
+    ASia?: {correct: number, total: number} | undefined
+    Europe?: {correct: number, total: number} | undefined
+    North_America?: {correct: number, total: number} | undefined
+    Oceania?: {correct: number, total: number} | undefined
+    South_America?: {correct: number, total: number} | undefined
+  } | any
+  updateScore: (categoryData: number) => void
 }
 
 const Trivia: React.FC<TriviaProps> = (props) => {
-  console.log("SELECTED GAME DATA", props.gameData)
-  const importedArray = props.gameData.gameData.map((country: any) => country)
-  const shuffle = (array: any) => {
+  const importedArray = props.gameData.gameData.map((country: string) => country)
+  const shuffle = (array: any[]) => {
     var length = array.length, current, remaining;
 
     while (length) {
@@ -21,7 +35,6 @@ const Trivia: React.FC<TriviaProps> = (props) => {
       array[length] = array[remaining];
       array[remaining] = current;
     }
-
     return array;
   }
 

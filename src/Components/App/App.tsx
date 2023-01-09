@@ -19,12 +19,10 @@ export interface Guesses {
   Europe: GuessScoreCount
   Africa: GuessScoreCount
 }
-
 export interface GuessScoreCount {
   correct: number,
   total: number
 }
-
 export interface Score {
   [country: string]: number | string | undefined
   NorthAmerica?: number | string
@@ -39,12 +37,6 @@ export interface Score {
 export interface KeepScore {
   (guesses: Guesses): Score
 }
-
-// export interface GameData {
-//   category?: any
-//   continent?: any
-//   gameData?: any
-// }
 
 // ---------- Component & Hook Declarations ----------
 
@@ -132,7 +124,7 @@ const App: React.FC = () => {
     }
   }
 
-  const updateScore = (updatedGuesses : any) => {
+  const updateScore = (updatedGuesses: Guesses) => {
     setGuesses(updatedGuesses)
   }
 
