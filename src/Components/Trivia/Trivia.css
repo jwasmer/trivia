@@ -1,0 +1,93 @@
+.questions-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26.5vw;
+    width: 40vw;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: #00a3b3;
+}
+
+.which-question {
+    font-size: 2.5vw;
+    margin-top: 5vw;
+    margin-bottom: 2vw;
+}
+
+.emoji {
+    margin-top: 0vw;
+    margin-bottom: 0vw;
+    font-size: 10vw;
+}
+
+.mc-buttons {
+    margin-left: 25vw;
+    margin-right: 25vw;
+}
+
+.mc-button {
+    height: 4vw;
+    width: 17vw;
+    font-family: 'Coiny';
+    font-size: 1.5vw;
+    color: #FFFFFF;
+    margin-left: 1.1vw;
+    margin-right: 1.1vw;
+    margin-top: 2vw;
+    background-color: #00a3b3;
+    border: none;
+    border-radius: 1vw;
+}
+
+.mc-button:hover {
+    cursor: pointer;
+    background-color: #006871;
+    transform: scale(1.2);
+    transition: all ease-in-out .3s;
+}
+
+.correct {
+    background-color: #94B563;
+}
+
+.correct:hover {
+    background-color: #6c893f;
+}
+
+.incorrect {
+    background-color: #F90000;
+}
+
+.incorrect:hover {
+    background-color: #9e0000;
+}
+
+.next-button {
+    margin-left: 60vw;
+    height: 2vw;
+    width: 10vw;
+    font-family: 'Coiny';
+    font-size: 1vw;
+    color: #FFFFFF;
+    background-color: #00a3b3;
+    border: none;
+    border-radius: .7vw;
+}
+
+.next-button:hover {
+    cursor: pointer;
+    background-color: #006871;
+    transform: scale(1.1);
+    transition: all ease-in-out .3s;
+}
+
+.hidden {
+    display: none;
+}

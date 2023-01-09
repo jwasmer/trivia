@@ -2,11 +2,13 @@ import React, { useState, useEffect, ButtonHTMLAttributes, useRef } from 'react'
 import { SyntheticEvent } from 'react'
 import { CountriesData } from '../../countries.model'
 import './Continents.css'
+import { Route, Routes, NavLink, Link } from 'react-router-dom'
 
 interface CountriesProps {
   continents: CountriesData[]
   continent?: CountriesData[]
   assignSelections?: selections | any
+  filterSelections: (categoryData: string) => void
 }
 
 interface CategoryButton {
@@ -21,9 +23,10 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const [selectedContinent, setSelectedContinent] = useState({})
   const contienentKeys = Object.keys(selectedContinent)
   const [selectedCategory, setSelectedCategory] = useState('')
+  
   const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
-      <button className='continent-button' onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
+      <button className='continent-name option-name' onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
     )
   })
   const assignData = (continent: object) => {
@@ -31,23 +34,23 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
     setSelectedContinent(continent)
   }
   const assignCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
     props.assignSelections(event.currentTarget.name)
     setSelectedCategory(event.currentTarget.name)
+    props.filterSelections(event.currentTarget.name)
   }
   return (
-    <div>
-       <img className="earth-gif" src='https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif' alt="rotating earth gif" data-cy="earth-gif"/>
-      <div className='continent-buttons'>
-        {!contienentKeys.length && <div>{continentsButtons}</div>}
-        {contienentKeys.length > 0 && selectedCategory === '' ?
-          <div className='category-buttons'>
-            <button className='continent-button' key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
-            <button className='continent-button' key="capitols" name="capitols" onClick={(event) => assignCategory(event)}>Capitols</button>
-            <button className='continent-button' key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
-          </div>
-          : null}
-      </div>
+    <div className='continent-buttons'>
+      <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-gif"/>
+      {!contienentKeys.length && <div>{continentsButtons}</div>}
+      {contienentKeys.length > 0 && selectedCategory === '' ?
+        <div>
+          <NavLink to="/play">
+          <button className='continent-name option-name option-button' key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
+          <button className='continent-name option-name option-button' key="capital" name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
+          <button className='continent-name option-name option-button' key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
+          </NavLink>
+        </div>
+        : null}
     </div>
   )
 }
