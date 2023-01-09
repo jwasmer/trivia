@@ -3,7 +3,7 @@ describe('continents spec', () => {
    cy.intercept('https://countries.trevorblades.com/',
     cy.stub()
       .callsFake(req => req.reply({ fixture: 'africa.json' }))).as('continents')
-      cy.visit('http://localhost:3000/selections') 
+      cy.visit('http://localhost:3000/') 
       cy.wait('@continents')
   })
 
@@ -19,12 +19,12 @@ describe('continents spec', () => {
 
   it('Should display the text Not Attempted! if no questions have been attempted', () => {
     cy.get('[data-cy="view-scoreboard-btn"]').click()
-    cy.get('[data-cy="north-america"]').contains('Not Attempted!')
-    cy.get('[data-cy="south-america"]').contains('Not Attempted!')
-    cy.get('[data-cy="oceania"]').contains('Not Attempted!')
-    cy.get('[data-cy="asia"]').contains('Not Attempted!')
-    cy.get('[data-cy="europe"]').contains('Not Attempted!')
-    cy.get('[data-cy="africa"]').contains('Not Attempted!')
+    cy.get('[data-cy="north-america"]').should('include.text', 'North America: Not attempted!')
+    cy.get('[data-cy="south-america"]').should('include.text', 'South America: Not attempted!')
+    cy.get('[data-cy="oceania"]').should('include.text', 'Oceania: Not attempted!')
+    cy.get('[data-cy="asia"]').should('include.text', 'Asia: Not attempted!')
+    cy.get('[data-cy="europe"]').should('include.text', 'Europe: Not attempted!')
+    cy.get('[data-cy="africa"]').should('include.text', 'Africa: Not attempted!')
   })
 
   it('Should correctly update the score as questions are attempted', () => {
@@ -32,12 +32,13 @@ describe('continents spec', () => {
     cy.get('[data-cy="Africa"]').click()
     cy.get('[data-cy="flags"]').click()
     for (let i = 0; i < 9; i++) {
-      cy.get('[data-cy="a"]').click()
+      cy.get('#mc-a').click()
       cy.get('[data-cy="next"]').click()
     }
-    cy.get('[data-cy="b"]').click()
+    cy.get('#mc-b').click()
     cy.get('[data-cy="next"]').click()
     cy.get('[data-cy="title"]').click()
-    cy.get('[data-cy="africa"]').contains("90%")
+    cy.get('[data-cy="view-scoreboard-btn"]').click()
+    cy.get('[data-cy="africa"]').should('include.text', '90%')
   })
 })
