@@ -10,7 +10,7 @@ describe('continents spec', () => {
   it('should display all elements on the Home page', () => {
     cy.get('[data-cy="title"]').contains('Trivia Game')
     cy.get('[data-cy="earth-gif"]').should('have.attr', 'src').should('include','https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif')
-    cy.get('.continent-button').contains('Antarctica')
+    cy.get('.continent-button').contains('Europe')
   });
 
   it('Should display category buttons for category options', () => {

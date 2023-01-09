@@ -24,11 +24,13 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const [selectedContinent, setSelectedContinent] = useState({})
   const contienentKeys = Object.keys(selectedContinent)
   const [selectedCategory, setSelectedCategory] = useState('')
-  
-  const continentsButtons: JSX.Element[] = props.continents.map(continent => {
-    return (
-      <button className="option-button continent-button continent-name option-name" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
-    )
+
+  const continentsButtons: JSX.Element[] | any = props.continents.map(continent => {
+    if (continent.name !== "Antarctica") {
+      return (
+        <button className="option-button continent-button continent-name option-name" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
+      )
+    }
   })
   const assignData = (continent: object) => {
     props.assignSelections(continent)
@@ -41,19 +43,19 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   }
   return (
     <div className='continent-buttons'>
-      <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-gif"/>
+      <img className="earth-gif" src={'https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif'} alt="rotating earth gif" data-cy="earth-gif" />
       {!contienentKeys.length && <div>{continentsButtons}</div>}
       {contienentKeys.length > 0 && selectedCategory === '' ?
         <div>
           <NavLink to="/play">
-          <button className='continent-name option-name option-button continent-button' key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
-          <button className='continent-name option-name option-button continent-button' name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
-          <button className='continent-name option-name option-button continent-button' name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
+            <button className='continent-name option-name option-button continent-button' key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
+            <button className='continent-name option-name option-button continent-button' name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
+            <button className='continent-name option-name option-button continent-button' name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
           </NavLink>
         </div>
         : null}
     </div>
   )
 }
- 
+
 export default Continents

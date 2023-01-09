@@ -110,7 +110,7 @@ describe('continents spec', () => {
     cy.get('#mc-d').should('exist')
   });
 
-  it('Should be able to select Antartica', () => {
+  it('Should be able to select South America or Europe', () => {
     cy.get('#mc-a').click()
     cy.get('.next-button').click()
     cy.get('#mc-b').click()
