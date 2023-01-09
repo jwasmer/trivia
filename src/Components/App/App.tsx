@@ -123,7 +123,7 @@ const App: React.FC = () => {
   }
 
   const assignSelections = (newSelection: object | string) => {
-    if (newSelection === 'emoji' || newSelection === 'capital' || newSelection === 'languages') {
+    if (newSelection === 'emoji' || newSelection === 'capital') {
       setSelectedCategoryApp(newSelection)
       console.log("CATEGORY", newSelection)
     } else {
@@ -139,11 +139,7 @@ const App: React.FC = () => {
   const filterSelections = (categoryData: string) => {
     let gameData = []
     for (let country of selectedContinent.countries) {
-      if (categoryData === 'languages') {
-        gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData][0].name })
-      } else {
-        gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
-      }
+      gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
     }
     const selectedGameData: { gameData: [] | unknown, continent: string, category: string | [] } = { gameData: gameData, continent: selectedContinent.name, category: categoryData }
     setGameData(selectedGameData)
