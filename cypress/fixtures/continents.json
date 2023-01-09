@@ -1,0 +1,60 @@
+{
+  "data": {
+    "continents": [
+      {
+      "code": "AN",
+      "name": "Antarctica",
+      "countries": [
+        {
+          "code": "AQ",
+          "name": "Antarctica",
+          "emoji": "🇦🇶",
+          "capital": null,
+          "currency": null,
+          "states": [],
+          "languages": []
+        },
+        {
+          "code": "BV",
+          "name": "Bouvet Island",
+          "emoji": "🇧🇻",
+          "capital": null,
+          "currency": "NOK",
+          "states": [],
+          "languages": [
+            { "name": "Norwegian", "native": "Norsk" },
+            { "name": "Norwegian Bokmål", "native": "Norsk bokmål" },
+            { "name": "Norwegian Nynorsk", "native": "Norsk nynorsk" }
+          ]
+        },
+        {
+          "code": "GS",
+          "name": "South Georgia and the South Sandwich Islands",
+          "emoji": "🇬🇸",
+          "capital": "King Edward Point",
+          "currency": "GBP",
+          "states": [],
+          "languages": [{ "name": "English", "native": "English" }]
+        },
+        {
+          "code": "HM",
+          "name": "Heard Island and McDonald Islands",
+          "emoji": "🇭🇲",
+          "capital": null,
+          "currency": "AUD",
+          "states": [],
+          "languages": [{ "name": "English", "native": "English" }]
+        },
+        {
+          "code": "TF",
+          "name": "French Southern Territories",
+          "emoji": "🇹🇫",
+          "capital": "Port-aux-Français",
+          "currency": "EUR",
+          "states": [],
+          "languages": [{ "name": "French", "native": "Français" }]
+        }
+      ]
+    }]
+  }
+}

@@ -4,6 +4,7 @@ import { CountriesData } from '../../countries.model'
 import './Continents.css'
 import { Route, Routes, NavLink, Link } from 'react-router-dom'
 
+
 interface CountriesProps {
   continents: CountriesData[]
   continent?: CountriesData[]
@@ -19,10 +20,6 @@ interface selections {
   assignSelections: (newSelection: object | string) => void
 }
 
-type EventTarget = {
-  name: string | null
-}
-
 const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const [selectedContinent, setSelectedContinent] = useState({})
   const contienentKeys = Object.keys(selectedContinent)
@@ -30,7 +27,7 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   
   const continentsButtons: JSX.Element[] = props.continents.map(continent => {
     return (
-      <button className="option-button" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
+      <button className="option-button continent-button" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
     )
   })
   const assignData = (continent: object) => {
@@ -49,9 +46,9 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
       {contienentKeys.length > 0 && selectedCategory === '' ?
         <div>
           <NavLink to="/play">
-          <button className="option-button" key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
-          <button className="option-button" key="capital" name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
-          <button className="option-button" key="languages" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
+          <button className="option-button continent-button" key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
+          <button className="option-button continent-button" name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
+          <button className="option-button continent-button" name="languages" onClick={(event) => assignCategory(event)}>Languages</button>
           </NavLink>
         </div>
         : null}

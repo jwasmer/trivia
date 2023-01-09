@@ -4,7 +4,7 @@ const getData = (): Promise<any> => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       query: `
-      query {
+      query continents {
           continents {
               code 
             	name

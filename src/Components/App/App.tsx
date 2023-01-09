@@ -49,7 +49,6 @@ export interface KeepScore {
 // ---------- Component & Hook Declarations ----------
 
 const App: React.FC = () => {
-
   const [data, setData] = useState<CountriesData[]>([])
   const [selectedContinent, setSelectedContinentApp] = useState<CountriesData | any>({})
   const [selectedCategory, setSelectedCategoryApp] = useState<String>('')
@@ -100,7 +99,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     initApp()
-    console.log("data", data)
+    console.log("data has loaded!", data)
   }, [])
 
   // -------- Game Logic ----------
