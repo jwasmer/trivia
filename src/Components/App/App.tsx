@@ -139,7 +139,11 @@ const App: React.FC = () => {
   const filterSelections = (categoryData: string) => {
     let gameData = []
     for (let country of selectedContinent.countries) {
-      gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
+      if (categoryData === 'languages') {
+        gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData][0].name })
+      } else {
+        gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
+      }
     }
     const selectedGameData: { gameData: [] | unknown, continent: string, category: string | [] } = { gameData: gameData, continent: selectedContinent.name, category: categoryData }
     setGameData(selectedGameData)
@@ -147,7 +151,6 @@ const App: React.FC = () => {
 
   return (
     <main className="app-container">
-      {/* {console.log("gameData", gameData)} */}
       <NavLink to='/' className='home-link'>
         <h1 className="title" data-cy="title">Trivia Game</h1>
       </NavLink>
