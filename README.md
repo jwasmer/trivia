@@ -8,6 +8,8 @@ Around the World is a world trivia game application that was created using TypeS
 1. Open up http://localhost:3000/ in your browswer
 1. `control + c` in your terminal to stop server
 
+To view deployed app, visit https://around-the-world-trivia.netlify.app/
+
 ## Project Goals
  * Self-teach TypeScript to create a Trivia Game Application
  * Fetch data using GraphQL
@@ -36,6 +38,7 @@ Around the World is a world trivia game application that was created using TypeS
 
 ## Future Extensions
 * Two Player Mode
+* Languages game mode
 * Add countdown timer
 * Add more game modes other than multiple choice 
 * Upon clicking on a continent, display info regarding info in cards 
