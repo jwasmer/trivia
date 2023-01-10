@@ -38,6 +38,9 @@ To view deployed app, visit https://around-the-world-trivia.netlify.app/
 
 ## Wins
 * Successfully deployed site using Netlify
+* Handled last-minute hurdle with grace and good team communication
+* Gained confidence with React hooks
+* Tackled messy logic required to make the Trivia component functional
 * Employed types/interfaces for stronger type control via TypeScript
 
 ## Future Extensions
