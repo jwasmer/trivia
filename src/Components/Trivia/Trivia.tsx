@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
 import './Trivia.css'
-
-interface TriviaProps {
-  gameData: any
-  guesses: any
-  updateScore: (categoryData: any) => void
-}
+import { TriviaProps} from '../../interfaces'
 
 const Trivia: React.FC<TriviaProps> = (props) => {
-  console.log("SELECTED GAME DATA", props.gameData)
-  const importedArray = props.gameData.gameData.map((country: any) => country)
-  const shuffle = (array: any) => {
+  const importedArray = props.gameData.gameData.map((country: string) => country)
+  const shuffle = (array: any[]) => {
+
     var length = array.length, current, remaining;
 
     while (length) {
@@ -21,7 +16,6 @@ const Trivia: React.FC<TriviaProps> = (props) => {
       array[length] = array[remaining];
       array[remaining] = current;
     }
-
     return array;
   }
 
@@ -30,15 +24,12 @@ const Trivia: React.FC<TriviaProps> = (props) => {
       setNextButtonStatus("next-button")
     }
     setCount(count + 1)
-    console.log(count);
-    console.log('importedArray: ', importedArray)
-    console.log('shuffledArray: ', shuffledArray)
   }
 
   const resetQuestion = () => {
     if (count > 9) {
       setWords(`You got ${score}/10 correct!`)
-      setCurrentFlag("Click Trivia Game to return home")
+      setCurrentFlag("Click the logo to return home")
       setStyling("which-question")
       props.guesses[props.gameData.continent].total += 10
       props.guesses[props.gameData.continent].correct += score
@@ -59,9 +50,7 @@ const Trivia: React.FC<TriviaProps> = (props) => {
   }
 
   const displayCategory = () => {
-    if (props.gameData.category === "languages") {
-      return 'language'
-    } else if (props.gameData.category === "emoji") {
+    if (props.gameData.category === "emoji") {
       return 'flag'
     } else if (props.gameData.category === "capital") {
       return 'capital'
@@ -72,10 +61,10 @@ const Trivia: React.FC<TriviaProps> = (props) => {
     setScore(score + 1)
     displayNextButton()
     setCurrentChoices([
-      <button className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
-      <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
-      <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
-      <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+      <button data-cy="a" className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+      <button data-cy="b" className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+      <button data-cy="c" className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+      <button data-cy="d" className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
     ])
   }
 
@@ -140,9 +129,10 @@ const Trivia: React.FC<TriviaProps> = (props) => {
           {currentChoices[randomOrder[2]]}
           {currentChoices[randomOrder[3]]}
         </div>
-        <div className="next-button-container">
-          <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
-        </div>
+        {currentFlag !== "Click the logo to return home" &&
+          <div className="next-button-container">
+            <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
+          </div>}
       </div>
     </div>
   )

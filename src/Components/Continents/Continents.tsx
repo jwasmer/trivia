@@ -1,24 +1,8 @@
 import React, { useState, useEffect, ButtonHTMLAttributes, useRef } from 'react'
 import { SyntheticEvent } from 'react'
-import { CountriesData } from '../../countries.model'
 import './Continents.css'
 import { Route, Routes, NavLink, Link } from 'react-router-dom'
-
-
-interface CountriesProps {
-  continents: CountriesData[]
-  continent?: CountriesData[]
-  assignSelections?: selections | any
-  filterSelections: (categoryData: string) => void
-}
-
-interface CategoryButton {
-  assignCategory: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
-
-interface selections {
-  assignSelections: (newSelection: object | string) => void
-}
+import { CountriesProps} from '../../interfaces'
 
 const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const [selectedContinent, setSelectedContinent] = useState({})
@@ -28,7 +12,7 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const continentsButtons: JSX.Element[] | any = props.continents.map(continent => {
     if (continent.name !== "Antarctica") {
       return (
-        <button className="option-button continent-button continent-name option-name" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
+        <button data-cy={`${continent.name}`} className="option-button continent-button continent-name option-name" onClick={() => assignData(continent)} key={continent.code}>{continent.name}</button>
       )
     }
   })
@@ -48,8 +32,8 @@ const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
       {contienentKeys.length > 0 && selectedCategory === '' ?
         <div>
           <NavLink to="/play">
-            <button className='continent-name option-name option-button continent-button' key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
-            <button className='continent-name option-name option-button continent-button' name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
+            <button data-cy="flags" className='continent-name option-name option-button continent-button' key="emoji" name="emoji" onClick={(event) => assignCategory(event)}>Flags</button>
+            <button data-cy="capital" className='continent-name option-name option-button continent-button' name="capital" onClick={(event) => assignCategory(event)}>Capitals</button>
           </NavLink>
         </div>
         : null}
