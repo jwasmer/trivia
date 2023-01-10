@@ -1,7 +1,7 @@
 import React from 'react'
 import { Guesses, Score, KeepScore} from '../../interfaces'
 
-export default function Scoreboard({ keepScore, guesses }: {keepScore: KeepScore, guesses: Guesses}) {
+const Scoreboard = ({ keepScore, guesses }: {keepScore: KeepScore, guesses: Guesses}) => {
   const score: Score = keepScore(guesses)
   return (
     <>
@@ -16,3 +16,5 @@ export default function Scoreboard({ keepScore, guesses }: {keepScore: KeepScore
     </>
   )
 }
+
+export default Scoreboard

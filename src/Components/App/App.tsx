@@ -8,6 +8,7 @@ import Scoreboard from '../Scoreboard/Scoreboard'
 
 import { Guesses, Score, KeepScore, CountriesData} from '../../interfaces'
 
+
 // ---------- Component & Hook Declarations ----------
 
 const App: React.FC = () => {
@@ -104,7 +105,7 @@ const App: React.FC = () => {
   return (
     <main className="app-container">
       <NavLink to='/' className='home-link'>
-        <h1 className="title" data-cy="title">Trivia Game</h1>
+        <h1 className="title" data-cy="title">Around the World</h1>
       </NavLink>
       <Routes>
         <Route

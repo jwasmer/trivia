@@ -22,11 +22,11 @@ html {
   font-family: 'Codystar';
   font-size: 5vw;
   margin-bottom: .2vw;
-  margin-top: .5vw;
+  margin-top: .75vw;
 }
 
 .title:hover {
-  transform: scale(1.019);
+  transform: scale(1.05);
   transition: all ease-in-out .3s;
 }
 
