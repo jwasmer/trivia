@@ -5,6 +5,7 @@ import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
 import Trivia from '../Trivia/Trivia'
 import Scoreboard from '../Scoreboard/Scoreboard'
+
 import { Guesses, Score, KeepScore, CountriesData} from '../../interfaces'
 
 // ---------- Component & Hook Declarations ----------
@@ -46,8 +47,6 @@ const App: React.FC = () => {
       }
     })
 
-  // -------- Game Data Fetch ----------
-
   const initApp = async () => {
     try {
       const response = await getData()
@@ -62,8 +61,6 @@ const App: React.FC = () => {
     initApp()
     console.log("data has loaded!", data)
   }, [])
-
-  // -------- Game Logic ----------
 
   const keepScore: KeepScore = (guesses: Guesses): Score => {
 
@@ -84,7 +81,7 @@ const App: React.FC = () => {
   }
 
   const assignSelections = (newSelection: object | string) => {
-    if (newSelection === 'emoji' || newSelection === 'capital' || newSelection === 'languages') {
+    if (newSelection === 'emoji' || newSelection === 'capital') {
       setSelectedCategoryApp(newSelection)
     } else {
       setSelectedContinentApp(newSelection)
@@ -98,11 +95,7 @@ const App: React.FC = () => {
   const filterSelections = (categoryData: string) => {
     let gameData = []
     for (let country of selectedContinent.countries) {
-      if (categoryData === 'languages') {
-        gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData][0].name })
-      } else {
-        gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
-      }
+      gameData.push({ [country.name]: country[categoryData], usedInQuestion: false, name: country.name, emoji: country[categoryData] })
     }
     const selectedGameData: { gameData: [] | unknown, continent: string, category: string | [] } = { gameData: gameData, continent: selectedContinent.name, category: categoryData }
     setGameData(selectedGameData)

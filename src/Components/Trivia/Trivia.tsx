@@ -50,9 +50,7 @@ const Trivia: React.FC<TriviaProps> = (props) => {
   }
 
   const displayCategory = () => {
-    if (props.gameData.category === "languages") {
-      return 'language'
-    } else if (props.gameData.category === "emoji") {
+    if (props.gameData.category === "emoji") {
       return 'flag'
     } else if (props.gameData.category === "capital") {
       return 'capital'
@@ -63,10 +61,10 @@ const Trivia: React.FC<TriviaProps> = (props) => {
     setScore(score + 1)
     displayNextButton()
     setCurrentChoices([
-      <button className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
-      <button className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
-      <button className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
-      <button className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
+      <button data-cy="a" className="mc-button correct" id="mc-a" onClick={clickA}>{shuffledArray[0].name}</button>,
+      <button data-cy="b" className="mc-button" id="mc-b" onClick={clickB}>{shuffledArray[1].name}</button>,
+      <button data-cy="c" className="mc-button" id="mc-c" onClick={clickC}>{shuffledArray[2].name}</button>,
+      <button data-cy="d" className="mc-button" id="mc-d" onClick={clickD}>{shuffledArray[3].name}</button>
     ])
   }
 
