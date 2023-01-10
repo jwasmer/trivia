@@ -37,6 +37,8 @@ To view deployed app, visit https://around-the-world-trivia.netlify.app/
 * James Wasmer: [jwasmer]('https://github.com/jwasmer')
 
 ## Wins
+* Successfully deployed site using Netlify
+* Employed types/interfaces for stronger type control via TypeScript
 
 ## Future Extensions
 * Two Player Mode
