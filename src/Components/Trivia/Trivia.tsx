@@ -5,6 +5,7 @@ import { TriviaProps} from '../../interfaces'
 const Trivia: React.FC<TriviaProps> = (props) => {
   const importedArray = props.gameData.gameData.map((country: string) => country)
   const shuffle = (array: any[]) => {
+
     var length = array.length, current, remaining;
 
     while (length) {
@@ -23,15 +24,12 @@ const Trivia: React.FC<TriviaProps> = (props) => {
       setNextButtonStatus("next-button")
     }
     setCount(count + 1)
-    console.log(count);
-    console.log('importedArray: ', importedArray)
-    console.log('shuffledArray: ', shuffledArray)
   }
 
   const resetQuestion = () => {
     if (count > 9) {
       setWords(`You got ${score}/10 correct!`)
-      setCurrentFlag("Click Trivia Game to return home")
+      setCurrentFlag("Click the logo to return home")
       setStyling("which-question")
       props.guesses[props.gameData.continent].total += 10
       props.guesses[props.gameData.continent].correct += score
@@ -133,9 +131,10 @@ const Trivia: React.FC<TriviaProps> = (props) => {
           {currentChoices[randomOrder[2]]}
           {currentChoices[randomOrder[3]]}
         </div>
-        <div className="next-button-container">
-          <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
-        </div>
+        {currentFlag !== "Click the logo to return home" &&
+          <div className="next-button-container">
+            <button className={nextButtonStatus} onClick={resetQuestion}>Next!</button>
+          </div>}
       </div>
     </div>
   )

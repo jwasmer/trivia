@@ -86,10 +86,8 @@ const App: React.FC = () => {
   const assignSelections = (newSelection: object | string) => {
     if (newSelection === 'emoji' || newSelection === 'capital' || newSelection === 'languages') {
       setSelectedCategoryApp(newSelection)
-      console.log("CATEGORY", newSelection)
     } else {
       setSelectedContinentApp(newSelection)
-      console.log("CONTINENT TYPE", newSelection)
     }
   }
 
