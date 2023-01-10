@@ -10,7 +10,7 @@ describe('continents spec', () => {
   })
 
   it('Should display title and question', () => {
-    cy.get('[data-cy="title"]').contains('Trivia Game')
+    cy.get('[data-cy="title"]').should('include.text', 'Around the World')
     cy.get('.which-question').contains("Which country's flag is this?")
     cy.get('.emoji').should('exist')
   });

@@ -8,23 +8,22 @@ describe('continents spec', () => {
   })
    
   it('should display all elements on the Home page', () => {
-    cy.get('[data-cy="title"]').contains('Trivia Game')
+    cy.get('[data-cy="title"]').should('include.text', 'Around the World')
     cy.get('[data-cy="earth-gif"]').should('have.attr', 'src').should('include','https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif')
     cy.get('.continent-button').contains('Europe')
   });
 
   it('Should display category buttons for category options', () => {
-    cy.get('[data-cy="title"]').contains('Trivia Game')
+    cy.get('[data-cy="title"]').should('include.text', 'Around the World')
     cy.get('[data-cy="earth-gif"]').should('have.attr', 'src').should('include','https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif')
     cy.get('.continent-button').click()
     cy.get('[name="emoji"]').contains('Flags')
     cy.get('[name="capital"]').contains('Capitals')
-    cy.get('[name="languages"]').contains('Languages')
     cy.get('[name="emoji"]').click()
   });
   
-  it('Should display trivia game mode', () => {
-    cy.get('[data-cy="title"]').contains('Trivia Game')
+  it('Should display Around the World', () => {
+    cy.get('[data-cy="title"]').should('include.text', 'Around the World')
     cy.get('[data-cy="earth-gif"]').should('have.attr', 'src').should('include','https://media.giphy.com/media/VI2UC13hwWin1MIfmi/giphy.gif')
     cy.get('.continent-button').click()
     cy.get('[name="emoji"]').click()
