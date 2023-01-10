@@ -1,6 +1,5 @@
 import React, { useState, useEffect, ButtonHTMLAttributes, useRef } from 'react'
 import { SyntheticEvent } from 'react'
-import { CountriesData } from '../../countries.model'
 import './Continents.css'
 import { Route, Routes, NavLink, Link } from 'react-router-dom'
 import { CountriesProps} from '../../interfaces'

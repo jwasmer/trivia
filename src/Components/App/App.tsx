@@ -5,8 +5,7 @@ import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
 import Trivia from '../Trivia/Trivia'
 import Scoreboard from '../Scoreboard/Scoreboard'
-import { CountriesData } from '../../countries.model'
-import { Guesses, Score, KeepScore} from '../../interfaces'
+import { Guesses, Score, KeepScore, CountriesData} from '../../interfaces'
 
 // ---------- Component & Hook Declarations ----------
 
