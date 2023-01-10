@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
 import './Trivia.css'
-
-interface TriviaProps {
-  gameData: any
-  guesses: any
-  updateScore: (categoryData: any) => void
-}
+import { TriviaProps} from '../../interfaces'
 
 const Trivia: React.FC<TriviaProps> = (props) => {
-  const importedArray = props.gameData.gameData.map((country: any) => country)
-  const shuffle = (array: any) => {
+  const importedArray = props.gameData.gameData.map((country: string) => country)
+  const shuffle = (array: any[]) => {
+
     var length = array.length, current, remaining;
 
     while (length) {
@@ -20,7 +16,6 @@ const Trivia: React.FC<TriviaProps> = (props) => {
       array[length] = array[remaining];
       array[remaining] = current;
     }
-
     return array;
   }
 
