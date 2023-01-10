@@ -9,7 +9,7 @@ describe('app spec', () => {
 
   it('Should load title text', () => {
     cy.get('[data-cy="title"]').should("exist")
-    cy.get('[data-cy="title"]').contains('Trivia Game')
+    cy.get('[data-cy="title"]').should('include.text', 'Around the World')
     cy.get('[data-cy="select-game-btn"]').contains('Select Game')
     cy.get('[data-cy="view-scoreboard-btn"]').contains('View Scoreboard')
   })
