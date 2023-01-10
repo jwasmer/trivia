@@ -51,7 +51,7 @@ describe('continents spec', () => {
     cy.get('#mc-b').click()
     cy.get('.next-button').click()
     cy.get('h2.which-question').contains('You got 1/10 correct!')
-    cy.get('h1.which-question').contains('Click Trivia Game to return home')
+    cy.get('h1.which-question').contains('Click the logo to return home')
   });
 
   it('Should allow user to return home after a round', () => {

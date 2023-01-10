@@ -1,24 +1,8 @@
 import React, { useState, useEffect, ButtonHTMLAttributes, useRef } from 'react'
 import { SyntheticEvent } from 'react'
-import { CountriesData } from '../../countries.model'
 import './Continents.css'
 import { Route, Routes, NavLink, Link } from 'react-router-dom'
-
-
-interface CountriesProps {
-  continents: CountriesData[]
-  continent?: CountriesData[]
-  assignSelections?: selections | any
-  filterSelections: (categoryData: string) => void
-}
-
-interface CategoryButton {
-  assignCategory: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
-
-interface selections {
-  assignSelections: (newSelection: object | string) => void
-}
+import { CountriesProps} from '../../interfaces'
 
 const Continents: React.FC<CountriesProps> = (props): JSX.Element => {
   const [selectedContinent, setSelectedContinent] = useState({})

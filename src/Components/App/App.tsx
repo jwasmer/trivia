@@ -5,38 +5,10 @@ import { Route, Routes, NavLink } from 'react-router-dom'
 import Continents from '../Continents/Continents'
 import Trivia from '../Trivia/Trivia'
 import Scoreboard from '../Scoreboard/Scoreboard'
-import { CountriesData } from '../../countries.model'
 
-export interface Guesses {
-  [country: string]: GuessScoreCount
-  Antartica: GuessScoreCount
-  "North America": GuessScoreCount
-  "South America": GuessScoreCount
-  Asia: GuessScoreCount
-  Oceania: GuessScoreCount
-  Europe: GuessScoreCount
-  Africa: GuessScoreCount
-}
+import { Guesses, Score, KeepScore, CountriesData} from '../../interfaces'
 
-export interface GuessScoreCount {
-  correct: number,
-  total: number
-}
-
-export interface Score {
-  [country: string]: number | string | undefined
-  NorthAmerica?: number | string
-  SouthAmerica?: number | string
-  Antartica?: number | string
-  Asia?: number | string
-  Oceania?: number | string
-  Europe?: number | string
-  Africa?: number | string
-}
-
-export interface KeepScore {
-  (guesses: Guesses): Score
-}
+// ---------- Component & Hook Declarations ----------
 
 const App: React.FC = () => {
   const [data, setData] = useState<CountriesData[]>([])
@@ -111,14 +83,12 @@ const App: React.FC = () => {
   const assignSelections = (newSelection: object | string) => {
     if (newSelection === 'emoji' || newSelection === 'capital') {
       setSelectedCategoryApp(newSelection)
-      console.log("CATEGORY", newSelection)
     } else {
       setSelectedContinentApp(newSelection)
-      console.log("CONTINENT TYPE", newSelection)
     }
   }
 
-  const updateScore = (updatedGuesses : any) => {
+  const updateScore = (updatedGuesses: Guesses) => {
     setGuesses(updatedGuesses)
   }
 
